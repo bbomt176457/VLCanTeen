@@ -1,0 +1,129 @@
+﻿@model List<canteen.Models.CartItem>
+@{
+    ViewBag.Title = "CartDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section jsFooter{
+<script src="/Content/js/cart/cartController.js"></script>
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>&mdash; Colorlib e-Commerce Template</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
+
+
+    <link href="~/Content/detail/fonts/icomoon/style.css" rel="stylesheet" />
+
+    <link href="~/Content/detail/css/style.css" rel="stylesheet" />
+    <link href="~/Content/detail/css/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="~/Content/detail/css/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Content/detail/css/magnific-popup.css" rel="stylesheet" />
+    <link href="~/Content/detail/css/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/detail/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/detail/css/aos.css" rel="stylesheet" />
+
+
+    <div class="bg-light py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-0"><a href="/Home/Index" style="color:orangered">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Cart</strong></div>
+            </div>
+        </div>
+    </div>
+    @if (Model.Count > 0)
+    {
+        <div class="site-section">
+            <div class="container">
+                <div class="row mb-5">
+                    <form class="col-md-12" method="post">
+                        <div class="site-blocks-table">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="product-thumbnail"></th>
+                                        <th class="product-name">Tên Món</th>
+                                        <th class="product-price">Giá</th>
+                                        <th class="product-quantity">Số Lượng</th>
+                                        <th class="product-total">Tổng Tiền</th>
+                                        <th class="product-remove">Xóa</th>
+                                    </tr>
+                                </thead>
+                                @foreach (var item in Model)
+                                {
+
+
+                                    <tbody>
+                                        <tr>
+                                            <td class="product-thumbnail">
+                                                <img src="@item.Food.Image" alt="Image" class="img-fluid">
+                                            </td>
+                                            <td class="product-name">
+                                                <h2 class="h5 text-black">@item.Food.Food_Name</h2>
+                                            </td>
+                                            <td>@item.Food.Price.GetValueOrDefault(0).ToString("N0")</td>
+                                            <td>
+                                                <div class="mb-5">
+                                                    <div class="input-group mb-3" style="max-width: 120px;">
+                                                        <div class="input-group-prepend">
+                                                            <button class="btn btn-outline-primary js-btn-minus" style="background-color:#d65106;color:white" type="button">&minus;</button>
+                                                        </div>
+                                                        <input type="text" class="form-control text-center" value="@item.Amount" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                                        <div class="input-group-append">
+                                                            <button class="btn btn-outline-primary js-btn-plus" style="background-color:#d65106;color:white" type="button">&plus;</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>@((item.Food.Price.GetValueOrDefault(0) * item.Amount).ToString("N0"))</td>
+                                            <td><a href="#" data-id="@item.Food.Food_ID" class="btn btn-primary btn-sm " class="btn-delete" style="background-color:#d65106;color:white">X</a></td>
+                                        </tr>
+
+                                    </tbody>
+                                }
+                            </table>
+                        </div>
+                    </form>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row mb-5">
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <a href="/Cart/CartDetail" class="btn btn-outline-primary btn-sm btn-block" style="background-color:#d65106;color:white">Thanh toán</a>
+                                
+                            </div>
+                            <div class="col-md-6">
+                                <a href="/" class="btn btn-outline-primary btn-sm btn-block" style="background-color:#d65106;color:white">Tiếp tục mua sắm</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <span class="alert alert-danger">Chưa có sản phẩm nào trong giỏ hàng .</span>
+    }
+
+
+
+
+    <link href="~/Content/detail/fonts/icomoon/style.css" rel="stylesheet" />
+    <script src="~/Content/detail/js/slick.min.js"></script>
+    <script src="~/Content/detail/js/popper.min.js"></script>
+    <script src="~/Content/detail/js/owl.carousel.min.js"></script>
+    <script src="~/Content/detail/js/main.js"></script>
+    <script src="~/Content/detail/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Content/detail/js/jquery-ui.js"></script>
+    <script src="~/Content/detail/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/detail/js/bootstrap.min.js"></script>
+    <script src="~/Content/detail/js/aos.js"></script>
+
+
+
