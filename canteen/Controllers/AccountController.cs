@@ -9,7 +9,7 @@ namespace canteen.Controllers
 {
     public class AccountController : Controller
     {
-        SEP23Team9Entities1 db = new SEP23Team9Entities1();
+        SEP23Team9Entities db = new SEP23Team9Entities();
         // GET: Account
         public ActionResult IndexAccount()
         {

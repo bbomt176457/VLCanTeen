@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using canteen.Models;
@@ -15,30 +16,14 @@ namespace canteen.Controllers
 {
     public class HomeController : Controller
     {
-        SEP23Team9Entities1 db = new SEP23Team9Entities1();
-        public ActionResult Index(int page = 1,int pageSize =1)
+        SEP23Team9Entities db = new SEP23Team9Entities();
+        public ActionResult Index(int page = 1, int pageSize = 1)
         {
-            
-
             var tai = new IndexTai();
             var model = tai.ListAllPaging(page, pageSize);
+            UserSave();
             return View(model);
         }
-
-        public void SignIn()
-        {
-            HttpContext.GetOwinContext().Authentication.Challenge(
-                new AuthenticationProperties { RedirectUri = "/" },
-                OpenIdConnectAuthenticationDefaults.AuthenticationType);
-        }
-
-        public void SignOut()
-        {
-            HttpContext.GetOwinContext().Authentication.SignOut(
-                OpenIdConnectAuthenticationDefaults.AuthenticationType,
-                CookieAuthenticationDefaults.AuthenticationType);
-        }
-
 
         public ActionResult About()
         {
@@ -58,7 +43,45 @@ namespace canteen.Controllers
             var food = db.Food1.FirstOrDefault(x => x.Food_ID == id);
             return View(food);
         }
-        
-       
+
+        public void SignIn()
+        {
+            HttpContext.GetOwinContext().Authentication.Challenge(
+                new AuthenticationProperties { RedirectUri = "/" },
+                OpenIdConnectAuthenticationDefaults.AuthenticationType);
+        }
+
+        public void SignOut()
+        {
+            HttpContext.GetOwinContext().Authentication.SignOut(
+                OpenIdConnectAuthenticationDefaults.AuthenticationType,
+                CookieAuthenticationDefaults.AuthenticationType);
+        }
+
+        public void UserSave()
+        {
+            var userclaims = User.Identity as System.Security.Claims.ClaimsIdentity;
+            string email = userclaims?.FindFirst("preferred_username")?.Value.ToString();
+            string name = userclaims?.FindFirst("name")?.Value.ToString();
+            string usertype = "Customer";
+            if (userclaims.IsAuthenticated)
+            {
+                User user = db.Users.FirstOrDefault(x => x.Email == email);
+                if (user != null)
+                {
+                    user.LastAccess = DateTime.Now;
+                }
+                else
+                {
+                    user = new User();
+                    user.Name = name;
+                    user.Email = email;
+                    user.Type_ID = 1;
+                    user.LastAccess = DateTime.Now;
+                    db.Users.Add(user);
+                }
+                db.SaveChanges();
+            };
+        }
     }
 }
