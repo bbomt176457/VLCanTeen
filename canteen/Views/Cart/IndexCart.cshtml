@@ -68,18 +68,16 @@
                                             <td>
                                                 <div class="mb-5">
                                                     <div class="input-group mb-3" style="max-width: 120px;">
-                                                        <div class="input-group-prepend">
-                                                            <button class="btn btn-outline-primary js-btn-minus" style="background-color:#d65106;color:white" type="button">&minus;</button>
-                                                        </div>
-                                                        <input type="text" class="form-control text-center" value="@item.Amount" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                                        <div class="input-group-append">
-                                                            <button class="btn btn-outline-primary js-btn-plus" style="background-color:#d65106;color:white" type="button">&plus;</button>
-                                                        </div>
+                                                        <form action="@Url.Action("SuaSoLuong")" method="get">
+                                                            <input type="hidden" name="id" value="@item.Food.Food_ID" />
+                                                            <input type="number" min="1" step="1" name="soluongmoi" value="@item.Amount" />
+                                                            <button type="submit" class="btn btn-primary btn-sm"> Cập nhật </button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>@((item.Food.Price.GetValueOrDefault(0) * item.Amount).ToString("N0"))</td>
-                                            <td><a href="#" data-id="@item.Food.Food_ID" class="btn btn-primary btn-sm " class="btn-delete" style="background-color:#d65106;color:white">X</a></td>
+                                            <td> <a href="@Url.Action("XoaKhoiGio",new {id = item.Food.Food_ID})" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?');" class="btn btn-danger btn-sm">Xóa</a> </td>
                                         </tr>
 
                                     </tbody>

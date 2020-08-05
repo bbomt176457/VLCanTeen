@@ -22,19 +22,28 @@ namespace canteen.Controllers
             }
             return View(list);
         }
-       
 
-        public JsonResult Delete(long id)
+        public RedirectToRouteResult SuaSoLuong(int id, int soluongmoi)
         {
-            var sessionCart =(List<CartItem>)Session[CartSession];
-            sessionCart.RemoveAll(x => x.Food.Food_ID == id);
-            Session[CartSession] = sessionCart;
-            return Json(new
+            // tìm carditem muon sua
+            List<CartItem> cart = Session[CartSession] as List<CartItem>;
+            CartItem itemSua = cart.FirstOrDefault(m => m.Food.Food_ID == id);
+            if (itemSua != null)
             {
-                status = true
-            });
+                itemSua.Amount = soluongmoi;
+            }
+            return RedirectToAction("IndexCart");
 
-
+        }
+        public RedirectToRouteResult XoaKhoiGio(int id)
+        {
+            List<CartItem> cart = Session[CartSession] as List<CartItem>;
+            CartItem itemXoa = cart.FirstOrDefault(m => m.Food.Food_ID == id);
+            if (itemXoa != null)
+            {
+                cart.Remove(itemXoa);
+            }
+            return RedirectToAction("IndexCart");
         }
         public ActionResult AddItem(long foodID, int amount)
         {
