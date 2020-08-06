@@ -14,15 +14,22 @@ namespace canteen.Models
     
     public partial class Bill
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Bill()
+        {
+            this.BillDetails = new HashSet<BillDetail>();
+        }
+    
         public int Bill_ID { get; set; }
-        public Nullable<int> Food_ID { get; set; }
-        public Nullable<int> User_ID { get; set; }
-        public System.TimeSpan Time { get; set; }
-        public System.DateTime Date { get; set; }
+        public int Food_ID { get; set; }
+        public int User_ID { get; set; }
+        public Nullable<System.TimeSpan> Time { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
         public Nullable<int> Price { get; set; }
         public Nullable<int> Amount { get; set; }
     
-        public virtual Food1 Food1 { get; set; }
         public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BillDetail> BillDetails { get; set; }
     }
 }

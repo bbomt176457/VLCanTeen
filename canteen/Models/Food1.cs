@@ -17,24 +17,22 @@ namespace canteen.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Food1()
         {
-            this.Bills = new HashSet<Bill>();
-            this.DailyFoods = new HashSet<DailyFood>();
+            this.BillDetails = new HashSet<BillDetail>();
         }
     
         public int Food_ID { get; set; }
-        public string Food_Name { get; set; }
-        public Nullable<int> Category { get; set; }
+        public string Name { get; set; }
+        public int Category_ID { get; set; }
         public Nullable<int> Discount { get; set; }
         public Nullable<int> Price { get; set; }
         public Nullable<int> Remain { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }
-        public bool isToday { get; set; }
+        public Nullable<bool> isToday { get; set; }
+        public Nullable<int> Status { get; set; }
     
+        public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Bill> Bills { get; set; }
-        public virtual Category Category1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DailyFood> DailyFoods { get; set; }
+        public virtual ICollection<BillDetail> BillDetails { get; set; }
     }
 }

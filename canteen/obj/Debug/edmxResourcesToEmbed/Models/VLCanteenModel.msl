@@ -18,16 +18,7 @@
       <EntityTypeMapping TypeName="SEP23Team9Model.Category">
         <MappingFragment StoreEntitySet="Category">
           <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
-          <ScalarProperty Name="Category1" ColumnName="Category" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="DailyFoods">
-      <EntityTypeMapping TypeName="SEP23Team9Model.DailyFood">
-        <MappingFragment StoreEntitySet="DailyFood">
-          <ScalarProperty Name="Dailyfood_ID" ColumnName="Dailyfood_ID" />
-          <ScalarProperty Name="Food_ID" ColumnName="Food_ID" />
-          <ScalarProperty Name="isToday" ColumnName="isToday" />
+          <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -36,7 +27,6 @@
         <MappingFragment StoreEntitySet="Feedback">
           <ScalarProperty Name="Feedback_ID" ColumnName="Feedback_ID" />
           <ScalarProperty Name="Date" ColumnName="Date" />
-          <ScalarProperty Name="Feedback_Meal" ColumnName="Feedback_Meal" />
           <ScalarProperty Name="Note" ColumnName="Note" />
           <ScalarProperty Name="User_ID" ColumnName="User_ID" />
           <ScalarProperty Name="Rate" ColumnName="Rate" />
@@ -47,14 +37,15 @@
       <EntityTypeMapping TypeName="SEP23Team9Model.Food1">
         <MappingFragment StoreEntitySet="Food1">
           <ScalarProperty Name="Food_ID" ColumnName="Food_ID" />
-          <ScalarProperty Name="Food_Name" ColumnName="Food_Name" />
-          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
           <ScalarProperty Name="Discount" ColumnName="Discount" />
           <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="Remain" ColumnName="Remain" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="isToday" ColumnName="isToday" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -75,16 +66,17 @@
           <ScalarProperty Name="User_ID" ColumnName="User_ID" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Type_ID" ColumnName="Type_ID" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
           <ScalarProperty Name="LastAccess" ColumnName="LastAccess" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="UserTypes">
-      <EntityTypeMapping TypeName="SEP23Team9Model.UserType">
-        <MappingFragment StoreEntitySet="UserType">
-          <ScalarProperty Name="Type_ID" ColumnName="Type_ID" />
-          <ScalarProperty Name="User_Type" ColumnName="User_Type" />
+    <EntitySetMapping Name="BillDetails">
+      <EntityTypeMapping TypeName="SEP23Team9Model.BillDetail">
+        <MappingFragment StoreEntitySet="BillDetail">
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Bill_ID" ColumnName="Bill_ID" />
+          <ScalarProperty Name="Food_ID" ColumnName="Food_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

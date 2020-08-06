@@ -21,7 +21,7 @@ namespace canteen.Models
         }
     
         public int Category_ID { get; set; }
-        public string Category1 { get; set; }
+        public string Category_Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Food1> Food1 { get; set; }

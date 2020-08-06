@@ -180,11 +180,11 @@
     <Compile Include="Models\Bill.cs">
       <DependentUpon>VLCanteenModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CartItem.cs" />
-    <Compile Include="Models\Category.cs">
+    <Compile Include="Models\BillDetail.cs">
       <DependentUpon>VLCanteenModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DailyFood.cs">
+    <Compile Include="Models\CartItem.cs" />
+    <Compile Include="Models\Category.cs">
       <DependentUpon>VLCanteenModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Feedback.cs">
@@ -204,9 +204,6 @@
       <DependentUpon>VLCanteenModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>VLCanteenModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UserType.cs">
       <DependentUpon>VLCanteenModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\VLCanteenModel.Context.cs">

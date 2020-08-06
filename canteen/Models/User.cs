@@ -24,13 +24,12 @@ namespace canteen.Models
         public int User_ID { get; set; }
         public string Email { get; set; }
         public string Name { get; set; }
-        public int Type_ID { get; set; }
+        public string Role { get; set; }
         public Nullable<System.DateTime> LastAccess { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bill> Bills { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Feedback> Feedbacks { get; set; }
-        public virtual UserType UserType { get; set; }
     }
 }

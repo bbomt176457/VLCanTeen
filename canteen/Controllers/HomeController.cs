@@ -76,7 +76,7 @@ namespace canteen.Controllers
                     user = new User();
                     user.Name = name;
                     user.Email = email;
-                    user.Type_ID = 1;
+                    user.Role = usertype;
                     user.LastAccess = DateTime.Now;
                     db.Users.Add(user);
                 }

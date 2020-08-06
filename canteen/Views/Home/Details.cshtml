@@ -25,7 +25,7 @@
     <div class="bg-light py-3">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 mb-0"><a href="/" style="color:orangered">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">@Html.DisplayFor(model => model.Food_Name)</strong></div>
+                <div class="col-md-12 mb-0"><a href="/" style="color:orangered">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">@Html.DisplayFor(model => model.Name)</strong></div>
             </div>
         </div>
     </div>
@@ -37,7 +37,7 @@
                     <img src="~/Content/images/NuocCam.jpg" alt="Image" class="img-fluid">
                 </div>
                 <div class="col-md-6">
-                    <h2 class="text-black">@Html.DisplayFor(model => model.Food_Name)</h2>
+                    <h2 class="text-black">@Html.DisplayFor(model => model.Name)</h2>
                     <p> @Html.DisplayFor(model => model.Description)</p>
                     <p><strong class=" h4" style="color:orangered">@Html.DisplayFor(model => model.Price)VNĐ --- <del>@Html.DisplayFor(model => model.Discount)VND </del></strong> </p>
 

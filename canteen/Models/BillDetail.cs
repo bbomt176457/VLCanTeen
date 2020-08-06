@@ -12,12 +12,13 @@ namespace canteen.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DailyFood
+    public partial class BillDetail
     {
-        public int Dailyfood_ID { get; set; }
-        public Nullable<int> Food_ID { get; set; }
-        public Nullable<bool> isToday { get; set; }
+        public int Quantity { get; set; }
+        public int Bill_ID { get; set; }
+        public int Food_ID { get; set; }
     
+        public virtual Bill Bill { get; set; }
         public virtual Food1 Food1 { get; set; }
     }
 }
