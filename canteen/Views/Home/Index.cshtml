@@ -100,12 +100,8 @@
     </div>
 </div>
      
-<div class="bg-light py-3">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 mb-0">@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))</div>
-        </div>
-    </div>
+<div class="pagination bg-light container row heading-title text-center col-md-12 mb-0">        
+            <a>@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))</a>
 </div>
 
 @*@section scripts{
