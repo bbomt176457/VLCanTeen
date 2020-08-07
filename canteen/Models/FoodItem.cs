@@ -7,10 +7,10 @@ namespace canteen.Models
 {
     public class FoodItem
     {
-        SEP23Team9Entities db = null;
+        SEP23Team9Entities1 db = null;
         public FoodItem()
         {
-            db = new SEP23Team9Entities();
+            db = new SEP23Team9Entities1();
         }
         public List<Food1> ListNewFood(int top)
         {

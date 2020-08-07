@@ -36,6 +36,28 @@
   <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 <h2></h2>
+<style>
+    .pagination {
+        display: inline-block;
+    }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+        }
+
+            .pagination a.active {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
+            }
+</style>
 <div class="menu-box">
     <div class="container">
         <div class="row">
@@ -46,7 +68,6 @@
                 </div>
             </div>
         </div>
-
         <div class="row inner-menu-box">
             <div class="col-3">
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -59,43 +80,34 @@
             <div class="" style="display:grid;grid-template-columns: 1.3fr 1.3fr 1.3fr; grid-template-rows: auto;grid-gap: 1em;">
                 @foreach (var item in Model)
                 {
-
                     <div class="gallery-single fix" style="padding: 0;margin:0;" id="item">
-
-
-                        <img src="~/Content/images/HuTieu.jpg" class="img-response" alt="Image" />
+                        <img src="@item.Image" class="img-response" alt="Image" />
                         <div>
                             <div class="why-text">
-
                                 <a href="@Url.Action("Details","Home",new {id = item.Food_ID} )">
                                     <h3>@item.Name </h3>
                                     <p class="h4" style="color:orangered">@item.Price -- <del style="color:black">@item.Discount </del></p>
                                     <h5> @item.Description</h5>
                                 </a>
-                                <button onclick="location.href='@Url.Action("AddItem", "Cart", new {foodId=item.Food_ID,  amount=1} )'" style="background-color:#d65106;color:white">Đặt Ngay</button>
+                                <button onclick="location.href='@Url.Action("AddItem", "Cart", new {foodId=item.Food_ID,amount=1} )'" style="background-color:#d65106;color:white">Đặt Ngay</button>
                                 <button style="background-color:#d65106;color:white" href="">Thêm vào giỏ hàng</button>
-
-
-                            </div>
+                           </div>
                         </div>
-
                     </div>
-
                 }
-
-
             </div>
-
-            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
-
-
-
-
-
         </div>
-
     </div>
 </div>
+     
+<div class="bg-light py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mb-0">@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))</div>
+        </div>
+    </div>
+</div>
+
 @*@section scripts{
         <script>
             $(function () {
@@ -122,8 +134,6 @@
             });
         </script>
     }*@
-
-
 @*@foreach (var item in Model)
         {
             <tr>

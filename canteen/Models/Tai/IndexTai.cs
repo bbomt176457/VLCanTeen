@@ -12,7 +12,7 @@ namespace canteen.Tai
 {
     public class IndexTai
     {
-        SEP23Team9Entities db = new SEP23Team9Entities();
+        SEP23Team9Entities1 db = new SEP23Team9Entities1();
         public IEnumerable<Food1> ListAllPaging(int page ,int pageSize)
         {
             return db.Food1.OrderByDescending(x=>x.Food_ID).ToPagedList(page,pageSize );

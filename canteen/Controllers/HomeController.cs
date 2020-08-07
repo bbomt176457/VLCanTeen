@@ -16,8 +16,8 @@ namespace canteen.Controllers
 {
     public class HomeController : Controller
     {
-        SEP23Team9Entities db = new SEP23Team9Entities();
-        public ActionResult Index(int page = 1, int pageSize = 1)
+        SEP23Team9Entities1 db = new SEP23Team9Entities1();
+        public ActionResult Index(int page = 1, int pageSize = 6)
         {
             var tai = new IndexTai();
             var model = tai.ListAllPaging(page, pageSize);

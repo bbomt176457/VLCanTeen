@@ -39,7 +39,7 @@
         <div class="site-section">
             <div class="container">
                 <div class="row mb-5">
-                    <form class="col-md-12" method="post">
+                    <div class="col-md-12" method="post">
                         <div class="site-blocks-table">
                             <table class="table table-bordered">
                                 <thead>
@@ -67,24 +67,33 @@
                                             <td>@item.Food.Price.GetValueOrDefault(0).ToString("N0")</td>
                                             <td>
                                                 <div class="mb-5">
-                                                    <div class="input-group mb-3" style="max-width: 120px;">
+                                                    <div class="mb-3">
                                                         <form action="@Url.Action("SuaSoLuong")" method="get">
                                                             <input type="hidden" name="id" value="@item.Food.Food_ID" />
                                                             <input type="number" min="1" step="1" name="soluongmoi" value="@item.Amount" />
-                                                            <button type="submit" class="btn btn-primary btn-sm"> Cập nhật </button>
+                                                            <button type="submit" class="btn btn-primary btn-sm" style="background-color:#d65106;color:white"> Cập nhật </button>
                                                         </form>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>@((item.Food.Price.GetValueOrDefault(0) * item.Amount).ToString("N0"))</td>
-                                            <td> <a href="@Url.Action("XoaKhoiGio",new {id = item.Food.Food_ID})" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?');" class="btn btn-danger btn-sm">Xóa</a> </td>
+                                            <td> <a href="@Url.Action("XoaKhoiGio",new {id = item.Food.Food_ID})" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?');" class="btn btn-danger btn-sm" style="background-color:#d65106;color:white">Xóa</a> </td>
                                         </tr>
-
+                                        
                                     </tbody>
                                 }
+                                <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="text-right">Tổng số lượng: @Model.Sum(m => m.Amount) </td>
+                                    <td></td>
+                                    <td class="text-right">Tổng thành tiền:@Model.Sum(m => m.Total).ToString("#,##0").Replace(',', '.') VNĐ </td>
+                                </tr>
+                                </tfoot>
                             </table>
                         </div>
-                    </form>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">

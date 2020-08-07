@@ -178,48 +178,42 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Bill.cs">
-      <DependentUpon>VLCanteenModel.tt</DependentUpon>
+      <DependentUpon>VLcanteenModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BillDetail.cs">
-      <DependentUpon>VLCanteenModel.tt</DependentUpon>
+      <DependentUpon>VLcanteenModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\Category.cs">
-      <DependentUpon>VLCanteenModel.tt</DependentUpon>
+      <DependentUpon>VLcanteenModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Feedback.cs">
-      <DependentUpon>VLCanteenModel.tt</DependentUpon>
+      <DependentUpon>VLcanteenModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Food1.cs">
-      <DependentUpon>VLCanteenModel.tt</DependentUpon>
+      <DependentUpon>VLcanteenModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FoodItem.cs" />
-    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>VLCanteenModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>VLCanteenModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>VLCanteenModel.tt</DependentUpon>
+      <DependentUpon>VLcanteenModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>VLCanteenModel.tt</DependentUpon>
+      <DependentUpon>VLcanteenModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\VLCanteenModel.Context.cs">
+    <Compile Include="Models\VLcanteenModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>VLCanteenModel.Context.tt</DependentUpon>
+      <DependentUpon>VLcanteenModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\VLCanteenModel.cs">
+    <Compile Include="Models\VLcanteenModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>VLCanteenModel.tt</DependentUpon>
+      <DependentUpon>VLcanteenModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\VLCanteenModel.Designer.cs">
+    <Compile Include="Models\VLcanteenModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>VLCanteenModel.edmx</DependentUpon>
+      <DependentUpon>VLcanteenModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -361,15 +355,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\VLCanteenModel.Context.tt">
+    <Content Include="Models\VLcanteenModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>VLCanteenModel.edmx</DependentUpon>
-      <LastGenOutput>VLCanteenModel.Context.cs</LastGenOutput>
+      <DependentUpon>VLcanteenModel.edmx</DependentUpon>
+      <LastGenOutput>VLcanteenModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\VLCanteenModel.tt">
+    <Content Include="Models\VLcanteenModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>VLCanteenModel.edmx</DependentUpon>
-      <LastGenOutput>VLCanteenModel.cs</LastGenOutput>
+      <DependentUpon>VLcanteenModel.edmx</DependentUpon>
+      <LastGenOutput>VLcanteenModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -471,12 +465,12 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\fonts\FontAwesome.otf" />
-    <EntityDeploy Include="Models\VLCanteenModel.edmx">
+    <EntityDeploy Include="Models\VLcanteenModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>VLCanteenModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>VLcanteenModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\VLCanteenModel.edmx.diagram">
-      <DependentUpon>VLCanteenModel.edmx</DependentUpon>
+    <Content Include="Models\VLcanteenModel.edmx.diagram">
+      <DependentUpon>VLcanteenModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
