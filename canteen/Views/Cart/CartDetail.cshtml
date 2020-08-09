@@ -1,14 +1,9 @@
 ﻿@model List<canteen.Models.CartItem>
 @{
     ViewBag.Title = "CartDetail";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
 }
 
-
-
-@section jsFooter{
-    <script src="/Content/js/cart/cartController.js"></script>
-}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,19 +25,20 @@
     <link href="~/Content/detail/css/aos.css" rel="stylesheet" />
 
 
-    <div class="bg-light py-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 mb-0"><a href="/Home/Index" style="color:orangered">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Cart</strong></div>
-            </div>
-        </div>
-    </div>
     @if (Model.Count > 0)
     {
         <div class="site-section">
             <div class="container">
+                <div class="bg-light py-3">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 mb-0"><a href="/Home/Index" style="color:orangered">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Cart</strong></div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row mb-5">
-                    <form class="col-md-12" method="post">
+
+                    <div class="col-md-12" method="post">
                         <div class="site-blocks-table">
                             <table class="table table-bordered">
                                 <thead>
@@ -70,36 +66,47 @@
                                             <td>@item.Food.Price.GetValueOrDefault(0).ToString("N0")</td>
                                             <td>
                                                 <div class="mb-5">
-                                                    <div class="input-group mb-3" style="max-width: 120px;">
-                                                        <div class="input-group-prepend">
-                                                            <button class="btn btn-outline-primary js-btn-minus" style="background-color:#d65106;color:white" type="button">&minus;</button>
-                                                        </div>
-                                                        <input type="text" class="form-control text-center" value="@item.Amount" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                                        <div class="input-group-append">
-                                                            <button class="btn btn-outline-primary js-btn-plus" style="background-color:#d65106;color:white" type="button">&plus;</button>
-                                                        </div>
+                                                    <div class="mb-3">
+                                                        <form action="@Url.Action("SuaSoLuong")" method="get">
+                                                            <input type="hidden" name="id" value="@item.Food.Food_ID" />
+                                                            <input type="number" min="1" step="1" name="soluongmoi" value="@item.Amount" />
+                                                            <button type="submit" class="btn btn-primary btn-sm" style="background-color:#d65106;color:white"> Cập nhật </button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>@((item.Food.Price.GetValueOrDefault(0) * item.Amount).ToString("N0"))</td>
-                                            <td><a href="#" data-id="@item.Food.Food_ID" class="btn btn-primary btn-sm " class="btn-delete" style="background-color:#d65106;color:white">X</a></td>
+                                            <td> <a href="@Url.Action("XoaKhoiGio",new {id = item.Food.Food_ID})" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?');" class="btn btn-danger btn-sm" style="background-color:#d65106;color:white">Xóa</a> </td>
                                         </tr>
 
                                     </tbody>
                                 }
+                                <tfoot>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="text-right">Tổng số lượng: @Model.Sum(m => m.Amount) </td>
+                                        <td class="text-right">Tổng thành tiền:@Model.Sum(m => m.Total).ToString("#,##0").Replace(',', '.') VNĐ </td>
+                                    </tr>
+                                </tfoot>
                             </table>
-
                         </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="heading-title text-center">
-                                    <h2>Thông tin đặt hàng</h2>
 
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
+
                 </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="heading-title text-center">
+                            <h2>Thông tin đặt hàng</h2>
+
+                        </div>
+                    </div>
+                </div>
+
+
 
                 <div class="row">
                     <div class="col-lg-12">
@@ -111,7 +118,7 @@
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <select class="custom-select d-block form-control" id="guest" required data-error="Chọn thời gian thanh toán">
@@ -134,7 +141,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <textarea class="form-control" id="message" placeholder="Ghi chú" rows="4"  required></textarea>
+                                        <textarea class="form-control" id="message" placeholder="Ghi chú" rows="4" required></textarea>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                     <div class="row">
@@ -158,13 +165,47 @@
                 </div>
             </div>
         </div>
-
-        
-
-
-
-        
     }
+    else
+    {
+        <div class="site-section">
+            <div class="container">
+                <div class="py-3">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 mb-0"><a href="/Home/Index" style="color:orangered">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Cart</strong></div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <span class="alert alert-danger">Chưa có sản phẩm nào trong giỏ hàng .</span>
+            </div>
+
+        </div>
+        
+        
+            <div class="col-md-6">
+                <div class="row mb-5">
+                    
+                    <div class="col-md-6">
+                        <a href="/" class="btn btn-outline-primary btn-sm btn-block" style="background-color:#d65106;color:white">Tiếp tục mua sắm</a>
+                    </div>
+                </div>
+
+            </div>
+
+        
+
+    }
+
+
+
+
+
+
+
+
 
 
 
@@ -180,6 +221,8 @@
     <script src="~/Content/detail/js/jquery-3.3.1.min.js"></script>
     <script src="~/Content/detail/js/bootstrap.min.js"></script>
     <script src="~/Content/detail/js/aos.js"></script>
+
+
 
 
 
