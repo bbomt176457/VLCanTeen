@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -48,11 +49,20 @@ namespace canteen.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Food_ID,Name,Category_ID,Discount,Price,Remain,Description,Image,isToday,Status")] Food1 food1)
+        public ActionResult Create(Food1 food1, HttpPostedFileBase file)
+        //public ActionResult Create([Bind(Include = "Food_ID,Name,Category_ID,Discount,Price,Remain,Description,Image,isToday,Status")] Food1 food1,
+        //    HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
-                db.Food1.Add(food1);
+                string path = Path.Combine(Server.MapPath("~/Images"), Path.GetFileName(file.FileName));
+                file.SaveAs(path);
+                db.Food1.Add(new Food1 
+                {
+                    Food_ID = food1.Food_ID, Name = food1.Name, Category_ID = food1.Category_ID, Discount = food1.Discount,
+                    Price = food1.Price, Remain = food1.Remain, Description = food1.Description, Image = "~/Images/" + file.FileName,
+                    isToday = food1.isToday, Status =food1.Status
+                });
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
