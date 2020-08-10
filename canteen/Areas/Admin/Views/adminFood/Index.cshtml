@@ -1,0 +1,80 @@
+﻿@model IEnumerable<canteen.Models.Food1>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Tên món ăn
+        </th>
+        <th>
+            Giá món ăn
+        </th>
+        <th>
+            Giảm giá
+        </th>
+        <th>
+            Số lượng tồn
+        </th>
+        <th>
+            Chi tiết món ăn
+        </th>
+        <th>
+            Hình ảnh
+        </th>
+        <th>
+            Menu chính
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            Loại món ăn
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @String.Format("{0:n0}", item.Price)
+        </td>
+        <td>
+            @String.Format("{0:n0}", item.Discount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remain)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isToday)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.Category_Name)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "Edit", new { id=item.Food_ID }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.Food_ID })
+        </td>
+    </tr>
+}
+
+</table>

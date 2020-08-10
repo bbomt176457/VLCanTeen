@@ -171,6 +171,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\adminBillController.cs" />
+    <Compile Include="Areas\Admin\Controllers\adminFoodController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -471,6 +474,19 @@
     <Content Include="Models\VLcanteenModel.edmx.diagram">
       <DependentUpon>VLcanteenModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\adminFood\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\adminFood\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\adminFood\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\adminFood\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\adminFood\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\adminBill\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\adminBill\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\adminBill\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\adminBill\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\adminBill\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -504,6 +520,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
