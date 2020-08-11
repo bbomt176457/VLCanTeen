@@ -38,7 +38,9 @@
 <h2></h2>
 <style>
     .pagination {
-        display: inline-block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
         .pagination a {
@@ -49,14 +51,16 @@
             transition: background-color .3s;
         }
 
-            .pagination a.active {
-                background-color: #4CAF50;
-                color: white;
-            }
 
-            .pagination a:hover:not(.active) {
-                background-color: #ddd;
-            }
+
+        .pagination .active {
+            background: #d65106;
+            color: white;
+        }
+
+        .pagination a:hover:not(.active) {
+            background-color: #ddd;
+        }
 </style>
 <div class="menu-box">
     <div class="container">
@@ -77,11 +81,11 @@
                     <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Bữa Trưa</a>
                 </div>
             </div>
-            <div class="" style="display:grid;grid-template-columns: 1.3fr 1.3fr 1.3fr; grid-template-rows: auto;grid-gap: 1em;">
+            <div class="" style="display:grid;grid-template-columns: 1.3fr 1.3fr 1.3fr; grid-template-rows: auto;grid-gap: 1em;width: 75%">
                 @foreach (var item in Model)
                 {
                     <div class="gallery-single fix" style="padding: 0;margin:0;" id="item">
-                        <img src="@item.Image" class="img-response" alt="Image" />
+                        <img src="@Url.Content(item.Image)" class="img-response" alt="Image" />
                         <div>
                             <div class="why-text">
                                 <a href="@Url.Action("Details","Home",new {id = item.Food_ID} )">
@@ -90,8 +94,8 @@
                                     <h5> @item.Description</h5>
                                 </a>
                                 <button onclick="location.href='@Url.Action("AddItem", "Cart", new {foodId=item.Food_ID,amount=1} )'" style="background-color:#d65106;color:white">Đặt Ngay</button>
-                                <button style="background-color:#d65106;color:white" href="">Thêm vào giỏ hàng</button>
-                           </div>
+                                <button style="background-color:#d65106;color:white" href="" class="add-to-cart fly-effect ">Thêm vào giỏ hàng</button>
+                            </div>
                         </div>
                     </div>
                 }
@@ -99,24 +103,19 @@
         </div>
     </div>
 </div>
-     
-<div class="pagination bg-light container row heading-title text-center col-md-12 mb-0">        
-            <a>@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))</a>
-</div>
+
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+
+
 
 @*@section scripts{
         <script>
             $(function () {
                 $(".add-to-cart").click(function () {
                     pid = $(this).attr("data-id");
-                    $.ajax({
-                        url: "/Cart/Add",
-                        data: { id: pid },
-                        success: function (response) {
-                            $("#nn-cart-count").html(response.Count);
-                            $("#nn-cart-total").html(response.Total);
-                        }
-                    });
+
 
                     // hieu ung bay vao gio
                     cssfly = ".fly-effect {background:url(?);background-size:100% 100%;}";
