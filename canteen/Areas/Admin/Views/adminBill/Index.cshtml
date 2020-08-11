@@ -1,8 +1,11 @@
 ﻿@model IEnumerable<canteen.Models.Bill>
 
+
 @{
     ViewBag.Title = "Index";
 }
+<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+
 
 <h2>Index</h2>
 
@@ -32,32 +35,33 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Food_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Time)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Amount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.Email)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Bill_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Bill_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Bill_ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Food_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Email)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Bill_ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Bill_ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Bill_ID })
+            </td>
+        </tr>
+    }
 
 </table>
