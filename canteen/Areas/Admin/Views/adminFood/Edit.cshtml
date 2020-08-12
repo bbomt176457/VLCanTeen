@@ -1,17 +1,76 @@
 ﻿@model canteen.Models.Food1
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit"; 
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+    
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<h2>Edit</h2>
+<!-- Mobile Metas -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Site Metas -->
+<title>Canteen Văn Lang</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Site Icons -->
+<link rel="shortcut icon" href="~/Areas/Admin/Content/images/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="~/Areas/Admin/Content/images/apple-touch-icon.png">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="~/Areas/Admin/Content/css/bootstrap.min.css">
+<!-- Site CSS -->
+<link rel="stylesheet" href="~/Areas/Admin/Content/css/style.css">
+<!-- Responsive CSS -->
+<link rel="stylesheet" href="~/Areas/Admin/Content/css/responsive.css">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="~/Areas/Admin/Content/css/custom.css">
+<script src="https://kit.fontawesome.com/ab8492bfc3.js" crossorigin="anonymous"></script>
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+        }
+
+
+
+        .pagination .active {
+            background: #d65106;
+            color: white;
+        }
+
+        .pagination a:hover:not(.active) {
+            background-color: #ddd;
+        }
+
+</style>
+
+<h2>Sửa</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Food1</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Food_ID)
@@ -99,5 +158,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <button class="btn btn-default">@Html.ActionLink("Trở về", "Index")</button>
 </div>
