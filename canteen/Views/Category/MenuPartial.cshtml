@@ -1,0 +1,40 @@
+﻿@using canteen.Models
+@model IEnumerable<Food1>
+@{
+    ViewBag.Title = "MenuPartial";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    IEnumerable<Food1> lstQAM = (IEnumerable<Food1>)ViewBag.lstQAM;
+    IEnumerable<Food1> lstMPM = (IEnumerable<Food1>)ViewBag.lstMPM;
+}
+<div class="header">
+    <div class="col-md-9 header-left">
+        <div class="top-nav">
+            <ul class="memenu skyblue">
+                <li class="grid active"><a href="@Url.Action("Index", "Home") ">Trang Chủ</a></li>
+               
+                @foreach (var groupItem in Model.GroupBy(n => n.Category))
+                {
+                    if (groupItem.Key != null)
+                    {
+                        <li class="grid">
+                            <a href="@Url.Action("TrangSanPham", "MenuFood", new { @IdLoaiSanPham = groupItem.Key.Category_ID })">@groupItem.Key.Category_Name</a>
+                           
+                        </li>
+                    }
+
+                }
+             
+            </ul>
+        </div>
+        
+    </div>
+    
+   
+</div>
+
+
+
+

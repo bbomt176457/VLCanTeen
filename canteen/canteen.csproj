@@ -175,7 +175,10 @@
     <Compile Include="Areas\Admin\Controllers\adminBillController.cs" />
     <Compile Include="Areas\Admin\Controllers\adminFoodController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\MenuFoodController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SeachController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -749,8 +752,10 @@
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Shared\LayoutUser.cshtml" />
     <Content Include="Views\Cart\IndexCart.cshtml" />
-    <Content Include="Views\Shared\HeaderCart.cshtml" />
     <Content Include="Views\Cart\CartDetail.cshtml" />
+    <Content Include="Views\TimKiem\KQTimKiem.cshtml" />
+    <Content Include="Views\Category\MenuPartial.cshtml" />
+    <Content Include="Views\MenuFood\TrangSanPham.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

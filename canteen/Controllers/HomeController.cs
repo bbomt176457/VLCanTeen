@@ -24,7 +24,20 @@ namespace canteen.Controllers
             UserSave();
             return View(model);
         }
-
+        public ActionResult Category()
+        {
+            //tạo ra các Viewbag để load ra sản phẩm
+            // tạo list đồng hồ mới
+            var lstQAM = db.Food1.Where(n => n.Category_ID == 1 ).ToList().OrderBy(n => n.Price);
+            //gán vào viewbang
+            ViewBag.lstQAM = lstQAM;
+            // list trang sức mới
+            var lstMPM = db.Food1.Where(n => n.Category_ID == 2 ).ToList().OrderBy(n => n.Price);
+            //gán vào viewbang
+            ViewBag.lstMPM = lstMPM;
+            // list trang sức mới
+            return View();
+        }
         public ActionResult About()
         {
             
