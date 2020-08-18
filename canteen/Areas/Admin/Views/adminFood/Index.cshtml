@@ -65,7 +65,10 @@
 <button class="btn btn-default">@Html.ActionLink("Tạo món mới", "Create")</button>
 <br><br />
 
-<table class="table">
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search ..." style="width: 100%;
+        font-size: 16px; margin-bottom: 12px; border: 1px solid #ddd; padding: 12px 20px 12px 40px;
+" />
+<table class="table" id="myTable">
     <tr>
         <th>
             Tên món ăn
@@ -130,9 +133,33 @@
             <td>
                 <button class="btn btn-default">@Html.ActionLink("Chi tiết", "Details", new { id = item.Food_ID })</button> |
                 <button class="btn btn-default">@Html.ActionLink("Sửa", "Edit", new { id = item.Food_ID })</button> |
-                <button class="btn btn-danger">@Html.ActionLink("Xóa", "Delete", new { id = item.Food_ID })</button>
+                <button class="btn btn-danger" style="color: springgreen">@Html.ActionLink("Xóa", "Delete", new { id = item.Food_ID })</button>
             </td>
         </tr>
     }
 
 </table>
+
+<script>
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
