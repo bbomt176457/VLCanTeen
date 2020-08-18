@@ -24,6 +24,8 @@ namespace canteen.Models
         {
             throw new UnintentionalCodeFirstException();
         }
+
+
     
         public virtual DbSet<Bill> Bills { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
@@ -32,5 +34,6 @@ namespace canteen.Models
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<BillDetail> BillDetails { get; set; }
+        public virtual DbSet<AdminWeb> AdminWebs { get; set; }
     }
 }

@@ -182,12 +182,14 @@
     <Compile Include="Areas\Admin\Controllers\adminFoodController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MenuFoodController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SeachController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdminWeb.cs" />
     <Compile Include="Models\Bill.cs">
       <DependentUpon>VLcanteenModel.tt</DependentUpon>
     </Compile>
@@ -205,6 +207,7 @@
       <DependentUpon>VLcanteenModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FoodItem.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>VLcanteenModel.tt</DependentUpon>
     </Compile>
@@ -762,6 +765,7 @@
     <Content Include="Views\TimKiem\KQTimKiem.cshtml" />
     <Content Include="Views\Category\MenuPartial.cshtml" />
     <Content Include="Views\MenuFood\TrangSanPham.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

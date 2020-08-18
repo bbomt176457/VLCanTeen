@@ -17,6 +17,7 @@
         <AssociationConnector Association="SEP23Team9Model.FK_Food1_Category1" ManuallyRouted="false" />
         <AssociationConnector Association="SEP23Team9Model.FK_Feedback_User1" ManuallyRouted="false" />
         <AssociationConnector Association="SEP23Team9Model.FK_BillDetail_Food1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SEP23Team9Model.AdminWeb" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -938,3 +938,7 @@ E:\Projects\SEP\VLCanTeen\canteen\obj\Debug\canteen.csproj.CoreCompileInputs.cac
 E:\Projects\SEP\VLCanTeen\canteen\obj\Debug\canteen.csproj.CopyComplete
 E:\Projects\SEP\VLCanTeen\canteen\obj\Debug\canteen.dll
 E:\Projects\SEP\VLCanTeen\canteen\obj\Debug\canteen.pdb
+E:\Projects\SEP\VLCanTeen\canteen\bin\AutoMapper.dll
+E:\Projects\SEP\VLCanTeen\canteen\bin\Dapper.dll
+E:\Projects\SEP\VLCanTeen\canteen\bin\AutoMapper.xml
+E:\Projects\SEP\VLCanTeen\canteen\bin\Dapper.xml
