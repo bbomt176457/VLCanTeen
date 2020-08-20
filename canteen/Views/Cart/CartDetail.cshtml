@@ -5,199 +5,104 @@
 }
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>&mdash; Colorlib e-Commerce Template</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
 
 
-    <link href="~/Content/detail/fonts/icomoon/style.css" rel="stylesheet" />
-
-    <link href="~/Content/detail/css/style.css" rel="stylesheet" />
-    <link href="~/Content/detail/css/owl.theme.default.min.css" rel="stylesheet" />
-    <link href="~/Content/detail/css/owl.carousel.min.css" rel="stylesheet" />
-    <link href="~/Content/detail/css/magnific-popup.css" rel="stylesheet" />
-    <link href="~/Content/detail/css/jquery-ui.css" rel="stylesheet" />
-    <link href="~/Content/detail/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/detail/css/aos.css" rel="stylesheet" />
 
 
-    @if (Model.Count > 0)
-    {
-        <div class="site-section">
+
+<div class="site-section">
+    <div class="container">
+        <div class="bg-light py-3">
             <div class="container">
-                <div class="bg-light py-3">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12 mb-0"><a href="/Home/Index" style="color:orangered">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Cart</strong></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-5">
-
-                    <div class="col-md-12" method="post">
-                        <div class="site-blocks-table">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th class="product-thumbnail"></th>
-                                        <th class="product-name">Tên Món</th>
-                                        <th class="product-price">Giá</th>
-                                        <th class="product-quantity">Số Lượng</th>
-                                        <th class="product-total">Tổng Tiền</th>
-                                        <th class="product-remove">Xóa</th>
-                                    </tr>
-                                </thead>
-                                @foreach (var item in Model)
-                                {
-
-
-                                    <tbody>
-                                        <tr>
-                                            <td class="product-thumbnail">
-                                                <img src="@item.Food.Image" alt="Image" class="img-fluid">
-                                            </td>
-                                            <td class="product-name">
-                                                <h2 class="h5 text-black">@item.Food.Name</h2>
-                                            </td>
-                                            <td>@item.Food.Price.GetValueOrDefault(0).ToString("N0")</td>
-                                            <td>
-                                                <div class="mb-5">
-                                                    <div class="mb-3">
-                                                        <form action="@Url.Action("SuaSoLuong")" method="get">
-                                                            <input type="hidden" name="id" value="@item.Food.Food_ID" />
-                                                            <input type="number" min="1" step="1" name="soluongmoi" value="@item.Amount" />
-                                                            <button type="submit" class="btn btn-primary btn-sm" style="background-color:#d65106;color:white"> Cập nhật </button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>@((item.Food.Price.GetValueOrDefault(0) * item.Amount).ToString("N0"))</td>
-                                            <td> <a href="@Url.Action("XoaKhoiGio",new {id = item.Food.Food_ID})" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?');" class="btn btn-danger btn-sm" style="background-color:#d65106;color:white">Xóa</a> </td>
-                                        </tr>
-
-                                    </tbody>
-                                }
-                                <tfoot>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td class="text-right">Tổng số lượng: @Model.Sum(m => m.Amount) </td>
-                                        <td class="text-right">Tổng thành tiền:@Model.Sum(m => m.Total).ToString("#,##0").Replace(',', '.') VNĐ </td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-
-                    </div>
-
-                </div>
-
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="heading-title text-center">
-                            <h2>Thông tin đặt hàng</h2>
-
-                        </div>
-                    </div>
+                    <div class="col-md-12 mb-0"><a href="/Home/Index" style="color:orangered">Trang chủ</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Giỏ hàng</strong></div>
                 </div>
+            </div>
+        </div>
+        <div class="row mb-5">
+
+            <div class="col-md-12" method="post">
+                <div class="site-blocks-table">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="product-thumbnail"></th>
+                                <th class="product-name">Tên Món</th>
+                                <th class="product-price">Giá</th>
+                                <th class="product-quantity">Số Lượng</th>
+                                <th class="product-total">Tổng Tiền</th>
+                                <th class="product-remove">Xóa</th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in Model)
+                        {
 
 
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <form id="contactForm">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="Tên" required data-error="Please enter your name">
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <select class="custom-select d-block form-control" id="guest" required data-error="Chọn thời gian thanh toán">
-                                            <option disabled selected>Chọn thời gian thanh toán</option>
-                                            <option value="1">11h</option>
-                                            <option value="2">11h15</option>
-                                            <option value="3">11h30</option>
-                                            <option value="4">11h45</option>
-                                            <option value="5">12h</option>
-                                            <option value="6">12h15</option>
-                                            <option value="7">12h30</option>
-                                            <option value="8">12h45</option>
-                                            <option value="9">13h</option>
-                                            <option value="10">13h15</option>
-                                            <option value="11">13h30</option>
-                                            <option value="12">13h45</option>
-                                        </select>
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <textarea class="form-control" id="message" placeholder="Ghi chú" rows="4" required></textarea>
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="row mb-5">
-
-                                                <div class="col-md-6">
-                                                    <a href="/" class="btn btn-outline-primary btn-sm btn-block" style="background-color:#d65106;color:white">Thanh toán</a>
-                                                    <a href="/" class="btn btn-outline-primary btn-sm btn-block" style="background-color:#d65106;color:white">Tiếp tục mua sắm</a>
-
-                                                </div>
+                            <tbody>
+                                <tr>
+                                    <td class="product-thumbnail">
+                                        <img height="200" width="150" src="@Url.Content(item.Food.Image)" alt="Image" class="img-fluid">
+                                    </td>
+                                    <td class="product-name">
+                                        <h2 class="h5 text-black">@item.Food.Name</h2>
+                                    </td>
+                                    <td>@item.Food.Price.GetValueOrDefault(0).ToString("N0")</td>
+                                    <td>
+                                        <div class="mb-5">
+                                            <div class="mb-3">
+                                                <form action="@Url.Action("SuaSoLuong")" method="get">
+                                                    <input type="hidden" name="id" value="@item.Food.Food_ID" />
+                                                    <input type="number" min="1" step="1" name="soluongmoi" value="@item.Amount" />
+                                                    <button type="submit" class="btn btn-primary btn-sm" style="background-color:#d65106;color:white"> Cập nhật </button>
+                                                </form>
                                             </div>
-
                                         </div>
+                                    </td>
+                                    <td>@((item.Food.Price.GetValueOrDefault(0) * item.Amount).ToString("N0"))</td>
+                                    <td> <a href="@Url.Action("XoaKhoiGio", new { id = item.Food.Food_ID })" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?');" class="btn btn-danger btn-sm" style="background-color:#d65106;color:white">Xóa</a> </td>
+                                </tr>
 
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                            </tbody>
+                        }
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="text-right">Tổng số lượng: @Model.Sum(m => m.Amount) </td>
+                                <td class="text-right">Tổng thành tiền:@Model.Sum(m => m.Total).ToString("#,##0").Replace(',', '.') VNĐ </td>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
+        </div>        
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="heading-title text-center">
+            <h2>Thông tin đặt hàng</h2>
+
         </div>
-    }
-    else
-    {
-        <div class="site-section">
-            <div class="container">
-                <div class="py-3">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12 mb-0"><a href="/Home/Index" style="color:orangered">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Cart</strong></div>
+    </div>
+</div>
 
-                        </div>
+@using (Html.BeginForm("CartDetail", "Cart", FormMethod.Post))
+{
+    <div class="form-group">
+        <label>Giờ nhận món :</label>
+        <input name="time" class="form-control" />
 
-                    </div>
-                </div>
-                <span class="alert alert-danger">Chưa có sản phẩm nào trong giỏ hàng .</span>
-            </div>
+    </div>
+    <div class="table-responsive" style=" text-align:left;padding:10px">
+        <button type="submit" class="btn">Đặt hàng</button>
 
-        </div>
-        
-        
-            <div class="col-md-6">
-                <div class="row mb-5">
-                    
-                    <div class="col-md-6">
-                        <a href="/" class="btn btn-outline-primary btn-sm btn-block" style="background-color:#d65106;color:white">Tiếp tục mua sắm</a>
-                    </div>
-                </div>
+    </div>
 
-            </div>
 
-        
 
-    }
+}
 
 
 
@@ -211,16 +116,10 @@
 
 
 
-    <link href="~/Content/detail/fonts/icomoon/style.css" rel="stylesheet" />
-    <script src="~/Content/detail/js/slick.min.js"></script>
-    <script src="~/Content/detail/js/popper.min.js"></script>
-    <script src="~/Content/detail/js/owl.carousel.min.js"></script>
-    <script src="~/Content/detail/js/main.js"></script>
-    <script src="~/Content/detail/js/jquery.magnific-popup.min.js"></script>
-    <script src="~/Content/detail/js/jquery-ui.js"></script>
-    <script src="~/Content/detail/js/jquery-3.3.1.min.js"></script>
-    <script src="~/Content/detail/js/bootstrap.min.js"></script>
-    <script src="~/Content/detail/js/aos.js"></script>
+
+
+
+
 
 
 

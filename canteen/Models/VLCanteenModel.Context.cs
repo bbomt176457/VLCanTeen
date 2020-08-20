@@ -24,16 +24,14 @@ namespace canteen.Models
         {
             throw new UnintentionalCodeFirstException();
         }
-
-
     
+        public virtual DbSet<AdminWeb> AdminWebs { get; set; }
         public virtual DbSet<Bill> Bills { get; set; }
+        public virtual DbSet<BillDetail> BillDetails { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Feedback> Feedbacks { get; set; }
         public virtual DbSet<Food1> Food1 { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<BillDetail> BillDetails { get; set; }
-        public virtual DbSet<AdminWeb> AdminWebs { get; set; }
     }
 }

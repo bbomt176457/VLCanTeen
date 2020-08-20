@@ -23,7 +23,7 @@ namespace canteen.Models
         public int Bill_ID { get; set; }
         public int Food_ID { get; set; }
         public int User_ID { get; set; }
-        public Nullable<System.TimeSpan> Time { get; set; }
+        public string Time { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
         public Nullable<int> Price { get; set; }
         public Nullable<int> Amount { get; set; }

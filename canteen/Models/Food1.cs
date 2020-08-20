@@ -31,8 +31,8 @@ namespace canteen.Models
         public Nullable<bool> isToday { get; set; }
         public Nullable<int> Status { get; set; }
     
-        public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillDetail> BillDetails { get; set; }
+        public virtual Category Category { get; set; }
     }
 }

@@ -30,6 +30,12 @@ namespace canteen
                defaults: new { controller = "Cart", action = "IndexCart", id = UrlParameter.Optional },
                namespaces: new[] { "canteen.Controllers" }
                );
+            routes.MapRoute(
+               name: "Payment Success",
+               url: "hoan-thành",
+               defaults: new { controller = "Cart", action = "Success", id = UrlParameter.Optional },
+               namespaces: new[] { "canteen.Controllers" }
+               );
         }
     }
 }

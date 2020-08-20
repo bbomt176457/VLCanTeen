@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="SEP23Team9Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AdminWeb">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
   <EntityType Name="Bill">
     <Key>
       <PropertyRef Name="Bill_ID" />
@@ -7,12 +16,23 @@
     <Property Name="Bill_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Food_ID" Type="Int32" Nullable="false" />
     <Property Name="User_ID" Type="Int32" Nullable="false" />
-    <Property Name="Time" Type="Time" Precision="7" />
+    <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Date" Type="DateTime" Precision="0" />
     <Property Name="Price" Type="Int32" />
     <Property Name="Amount" Type="Int32" />
-    <NavigationProperty Name="User" Relationship="Self.FK_Bill_User1" FromRole="Bill" ToRole="User" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Bill_User" FromRole="Bill" ToRole="User" />
     <NavigationProperty Name="BillDetails" Relationship="Self.FK_BillDetail_Bill" FromRole="Bill" ToRole="BillDetail" />
+  </EntityType>
+  <EntityType Name="BillDetail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Bill_ID" Type="Int32" Nullable="false" />
+    <Property Name="Food_ID" Type="Int32" Nullable="false" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Bill" Relationship="Self.FK_BillDetail_Bill" FromRole="BillDetail" ToRole="Bill" />
+    <NavigationProperty Name="Food1" Relationship="Self.FK_BillDetail_Food1" FromRole="BillDetail" ToRole="Food1" />
   </EntityType>
   <EntityType Name="Category">
     <Key>
@@ -47,8 +67,8 @@
     <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="isToday" Type="Boolean" />
     <Property Name="Status" Type="Int32" />
-    <NavigationProperty Name="Category" Relationship="Self.FK_Food1_Category1" FromRole="Food1" ToRole="Category" />
     <NavigationProperty Name="BillDetails" Relationship="Self.FK_BillDetail_Food1" FromRole="Food1" ToRole="BillDetail" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Food1_Category1" FromRole="Food1" ToRole="Category" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
@@ -69,22 +89,10 @@
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Role" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="LastAccess" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Bills" Relationship="Self.FK_Bill_User1" FromRole="User" ToRole="Bill" />
+    <NavigationProperty Name="Bills" Relationship="Self.FK_Bill_User" FromRole="User" ToRole="Bill" />
     <NavigationProperty Name="Feedbacks" Relationship="Self.FK_Feedback_User1" FromRole="User" ToRole="Feedback" />
   </EntityType>
-  <EntityType Name="BillDetail">
-    <Key>
-      <PropertyRef Name="Quantity" />
-      <PropertyRef Name="Bill_ID" />
-      <PropertyRef Name="Food_ID" />
-    </Key>
-    <Property Name="Quantity" Type="Int32" Nullable="false" />
-    <Property Name="Bill_ID" Type="Int32" Nullable="false" />
-    <Property Name="Food_ID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Bill" Relationship="Self.FK_BillDetail_Bill" FromRole="BillDetail" ToRole="Bill" />
-    <NavigationProperty Name="Food1" Relationship="Self.FK_BillDetail_Food1" FromRole="BillDetail" ToRole="Food1" />
-  </EntityType>
-  <Association Name="FK_Bill_User1">
+  <Association Name="FK_Bill_User">
     <End Role="User" Type="Self.User" Multiplicity="1" />
     <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
     <ReferentialConstraint>
@@ -105,6 +113,18 @@
       </Principal>
       <Dependent Role="BillDetail">
         <PropertyRef Name="Bill_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BillDetail_Food1">
+    <End Role="Food1" Type="Self.Food1" Multiplicity="1" />
+    <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Food1">
+        <PropertyRef Name="Food_ID" />
+      </Principal>
+      <Dependent Role="BillDetail">
+        <PropertyRef Name="Food_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -132,32 +152,25 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_BillDetail_Food1">
-    <End Role="Food1" Type="Self.Food1" Multiplicity="1" />
-    <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Food1">
-        <PropertyRef Name="Food_ID" />
-      </Principal>
-      <Dependent Role="BillDetail">
-        <PropertyRef Name="Food_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="SEP23Team9Entities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AdminWebs" EntityType="Self.AdminWeb" />
     <EntitySet Name="Bills" EntityType="Self.Bill" />
+    <EntitySet Name="BillDetails" EntityType="Self.BillDetail" />
     <EntitySet Name="Categories" EntityType="Self.Category" />
     <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
     <EntitySet Name="Food1" EntityType="Self.Food1" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="Users" EntityType="Self.User" />
-    <EntitySet Name="BillDetails" EntityType="Self.BillDetail" />
-    <AssociationSet Name="FK_Bill_User1" Association="Self.FK_Bill_User1">
+    <AssociationSet Name="FK_Bill_User" Association="Self.FK_Bill_User">
       <End Role="User" EntitySet="Users" />
       <End Role="Bill" EntitySet="Bills" />
     </AssociationSet>
     <AssociationSet Name="FK_BillDetail_Bill" Association="Self.FK_BillDetail_Bill">
       <End Role="Bill" EntitySet="Bills" />
+      <End Role="BillDetail" EntitySet="BillDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BillDetail_Food1" Association="Self.FK_BillDetail_Food1">
+      <End Role="Food1" EntitySet="Food1" />
       <End Role="BillDetail" EntitySet="BillDetails" />
     </AssociationSet>
     <AssociationSet Name="FK_Food1_Category1" Association="Self.FK_Food1_Category1">
@@ -168,60 +181,5 @@
       <End Role="User" EntitySet="Users" />
       <End Role="Feedback" EntitySet="Feedbacks" />
     </AssociationSet>
-    <AssociationSet Name="FK_BillDetail_Food1" Association="Self.FK_BillDetail_Food1">
-      <End Role="Food1" EntitySet="Food1" />
-      <End Role="BillDetail" EntitySet="BillDetails" />
-    </AssociationSet>
-    <FunctionImport Name="sp_alterdiagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="version" Mode="In" Type="Int32" />
-      <Parameter Name="definition" Mode="In" Type="Binary" />
-    </FunctionImport>
-    <FunctionImport Name="sp_creatediagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="version" Mode="In" Type="Int32" />
-      <Parameter Name="definition" Mode="In" Type="Binary" />
-    </FunctionImport>
-    <FunctionImport Name="sp_dropdiagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(SEP23Team9Model.sp_helpdiagramdefinition_Result)">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(SEP23Team9Model.sp_helpdiagrams_Result)">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_renamediagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="new_diagramname" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="sp_upgraddiagrams" />
-    <EntitySet Name="AdminWebs" EntityType="SEP23Team9Model.AdminWeb" />
   </EntityContainer>
-  <ComplexType Name="sp_helpdiagramdefinition_Result">
-    <Property Type="Int32" Name="version" Nullable="true" />
-    <Property Type="Binary" Name="definition" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_helpdiagrams_Result">
-    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-    <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-    <Property Type="Int32" Name="OwnerID" Nullable="false" />
-  </ComplexType>
-  <EntityType Name="AdminWeb">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-  </EntityType>
 </Schema>

@@ -4,20 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f6db31cb58e0464da671b0c06674c2e6" Name="Diagram1">
+      <Diagram DiagramId="4ca9b03d5317467fa6aaa8c35dd4ae2b" Name="Diagram1">
+        <EntityTypeShape EntityType="SEP23Team9Model.AdminWeb" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SEP23Team9Model.Bill" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP23Team9Model.BillDetail" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="SEP23Team9Model.Category" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SEP23Team9Model.Feedback" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SEP23Team9Model.Food1" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP23Team9Model.sysdiagram" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP23Team9Model.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SEP23Team9Model.User" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP23Team9Model.BillDetail" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <AssociationConnector Association="SEP23Team9Model.FK_Bill_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team9Model.FK_Bill_User" ManuallyRouted="false" />
         <AssociationConnector Association="SEP23Team9Model.FK_BillDetail_Bill" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team9Model.FK_BillDetail_Food1" ManuallyRouted="false" />
         <AssociationConnector Association="SEP23Team9Model.FK_Food1_Category1" ManuallyRouted="false" />
         <AssociationConnector Association="SEP23Team9Model.FK_Feedback_User1" ManuallyRouted="false" />
-        <AssociationConnector Association="SEP23Team9Model.FK_BillDetail_Food1" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="SEP23Team9Model.AdminWeb" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

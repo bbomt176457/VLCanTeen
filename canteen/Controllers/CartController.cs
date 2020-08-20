@@ -5,11 +5,14 @@ using System.Web;
 using System.Web.Mvc;
 using canteen.Models;
 using System.Web.Script.Serialization;
+using canteen.Models.Tai;
 
 namespace canteen.Controllers
 {
+
     public class CartController : Controller
     {
+        SEP23Team9Entities1 db = new SEP23Team9Entities1();
         private const string CartSession = "CartSession";
         // GET: Cart
         public ActionResult IndexCart()
@@ -17,7 +20,7 @@ namespace canteen.Controllers
             var cart = Session[CartSession];
             var list = new List<CartItem>();
             if (cart != null)
-            { 
+            {
                 list = (List<CartItem>)cart;
             }
             return View(list);
@@ -69,7 +72,7 @@ namespace canteen.Controllers
                     var item = new CartItem();
                     item.Food = food;
                     item.Amount = amount;
-                    
+
                     list.Add(item);
                 }
                 Session[CartSession] = list;
@@ -87,6 +90,8 @@ namespace canteen.Controllers
             }
             return RedirectToAction("IndexCart");
         }
+
+
         public ActionResult CartDetail()
         {
             var cart = Session[CartSession];
@@ -96,6 +101,37 @@ namespace canteen.Controllers
                 list = (List<CartItem>)cart;
             }
             return View(list);
+        }
+        [HttpPost]
+        public ActionResult CartDetail(string time)
+        {
+            var cart = (List<CartItem>)Session[CartSession];
+            var id = 0;
+            foreach (var item in cart)
+            {
+                var order = new Bill();
+                order.Date = DateTime.Now;
+                order.Time = time;
+                order.Price = item.Total;
+                order.Amount = item.Amount;
+                order.Food_ID = item.Food.Food_ID;
+                order.User_ID = 6;
+                id = new BillTai().Insert(order);
+            }
+
+            foreach (var item in cart)
+            {
+                var orderDetail = new BillDetail();
+                orderDetail.Food_ID = item.Food.Food_ID;
+                orderDetail.Bill_ID = id;
+                orderDetail.Quantity = item.Amount;
+                new BillDetailTai().Insert(orderDetail);
+            }
+            return Redirect("/hoan-thanh");
+        }
+        public ActionResult Success()
+        {
+            return View();
         }
 
     }

@@ -25,7 +25,7 @@ namespace canteen.Controllers
             AdminWeb admin = db.AdminWebs.Where(x => x.Email == user.Email && x.Password == user.Password).FirstOrDefault();
             if (admin != null)
             {
-                Session.Add("Id", admin.Id);
+                Session.Add("Id", admin.id);
                 Session.Timeout = 720;
             }
 

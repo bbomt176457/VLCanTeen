@@ -17,6 +17,7 @@ namespace canteen.Models
         public int Quantity { get; set; }
         public int Bill_ID { get; set; }
         public int Food_ID { get; set; }
+        public int id { get; set; }
     
         public virtual Bill Bill { get; set; }
         public virtual Food1 Food1 { get; set; }

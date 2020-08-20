@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SEP23Team9Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SEP23Team9Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AdminWeb">
           <Key>
             <PropertyRef Name="id" />
@@ -21,22 +21,19 @@
           <Property Name="Bill_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Food_ID" Type="int" Nullable="false" />
           <Property Name="User_ID" Type="int" Nullable="false" />
-          <Property Name="Time" Type="time" Precision="7" />
+          <Property Name="Time" Type="nvarchar" MaxLength="50" />
           <Property Name="Date" Type="date" />
           <Property Name="Price" Type="int" />
           <Property Name="Amount" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'SEP23Team9.dbo.BillDetail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="BillDetail">
           <Key>
-            <PropertyRef Name="Quantity" />
-            <PropertyRef Name="Bill_ID" />
-            <PropertyRef Name="Food_ID" />
+            <PropertyRef Name="id" />
           </Key>
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="Bill_ID" Type="int" Nullable="false" />
           <Property Name="Food_ID" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -90,7 +87,7 @@ warning 6002: The table/view 'SEP23Team9.dbo.BillDetail' does not have a primary
           <Property Name="Role" Type="nvarchar" MaxLength="10" />
           <Property Name="LastAccess" Type="datetime" />
         </EntityType>
-        <Association Name="FK_Bill_User1">
+        <Association Name="FK_Bill_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
           <ReferentialConstraint>
@@ -150,53 +147,16 @@ warning 6002: The table/view 'SEP23Team9.dbo.BillDetail' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="SEP23Team9ModelStoreContainer">
           <EntitySet Name="AdminWeb" EntityType="Self.AdminWeb" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BillDetail" EntityType="Self.BillDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Food1" EntityType="Self.Food1" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="BillDetail" EntityType="Self.BillDetail" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [BillDetail].[Quantity] AS [Quantity], 
-    [BillDetail].[Bill_ID] AS [Bill_ID], 
-    [BillDetail].[Food_ID] AS [Food_ID]
-    FROM [dbo].[BillDetail] AS [BillDetail]</DefiningQuery>
-          </EntitySet>
-          <AssociationSet Name="FK_Bill_User1" Association="Self.FK_Bill_User1">
+          <AssociationSet Name="FK_Bill_User" Association="Self.FK_Bill_User">
             <End Role="User" EntitySet="User" />
             <End Role="Bill" EntitySet="Bill" />
           </AssociationSet>
@@ -217,10 +177,20 @@ warning 6002: The table/view 'SEP23Team9.dbo.BillDetail' does not have a primary
             <End Role="Food1" EntitySet="Food1" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SEP23Team9Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdminWeb">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="Bill">
           <Key>
             <PropertyRef Name="Bill_ID" />
@@ -228,12 +198,23 @@ warning 6002: The table/view 'SEP23Team9.dbo.BillDetail' does not have a primary
           <Property Name="Bill_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Food_ID" Type="Int32" Nullable="false" />
           <Property Name="User_ID" Type="Int32" Nullable="false" />
-          <Property Name="Time" Type="Time" Precision="7" />
+          <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Date" Type="DateTime" Precision="0" />
           <Property Name="Price" Type="Int32" />
           <Property Name="Amount" Type="Int32" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Bill_User1" FromRole="Bill" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Bill_User" FromRole="Bill" ToRole="User" />
           <NavigationProperty Name="BillDetails" Relationship="Self.FK_BillDetail_Bill" FromRole="Bill" ToRole="BillDetail" />
+        </EntityType>
+        <EntityType Name="BillDetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Bill_ID" Type="Int32" Nullable="false" />
+          <Property Name="Food_ID" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Bill" Relationship="Self.FK_BillDetail_Bill" FromRole="BillDetail" ToRole="Bill" />
+          <NavigationProperty Name="Food1" Relationship="Self.FK_BillDetail_Food1" FromRole="BillDetail" ToRole="Food1" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -268,8 +249,8 @@ warning 6002: The table/view 'SEP23Team9.dbo.BillDetail' does not have a primary
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="isToday" Type="Boolean" />
           <Property Name="Status" Type="Int32" />
-          <NavigationProperty Name="Category" Relationship="Self.FK_Food1_Category1" FromRole="Food1" ToRole="Category" />
           <NavigationProperty Name="BillDetails" Relationship="Self.FK_BillDetail_Food1" FromRole="Food1" ToRole="BillDetail" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Food1_Category1" FromRole="Food1" ToRole="Category" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -290,22 +271,10 @@ warning 6002: The table/view 'SEP23Team9.dbo.BillDetail' does not have a primary
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Role" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="LastAccess" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Bills" Relationship="Self.FK_Bill_User1" FromRole="User" ToRole="Bill" />
+          <NavigationProperty Name="Bills" Relationship="Self.FK_Bill_User" FromRole="User" ToRole="Bill" />
           <NavigationProperty Name="Feedbacks" Relationship="Self.FK_Feedback_User1" FromRole="User" ToRole="Feedback" />
         </EntityType>
-        <EntityType Name="BillDetail">
-          <Key>
-            <PropertyRef Name="Quantity" />
-            <PropertyRef Name="Bill_ID" />
-            <PropertyRef Name="Food_ID" />
-          </Key>
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="Bill_ID" Type="Int32" Nullable="false" />
-          <Property Name="Food_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Bill" Relationship="Self.FK_BillDetail_Bill" FromRole="BillDetail" ToRole="Bill" />
-          <NavigationProperty Name="Food1" Relationship="Self.FK_BillDetail_Food1" FromRole="BillDetail" ToRole="Food1" />
-        </EntityType>
-        <Association Name="FK_Bill_User1">
+        <Association Name="FK_Bill_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
           <ReferentialConstraint>
@@ -326,6 +295,18 @@ warning 6002: The table/view 'SEP23Team9.dbo.BillDetail' does not have a primary
             </Principal>
             <Dependent Role="BillDetail">
               <PropertyRef Name="Bill_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BillDetail_Food1">
+          <End Role="Food1" Type="Self.Food1" Multiplicity="1" />
+          <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food1">
+              <PropertyRef Name="Food_ID" />
+            </Principal>
+            <Dependent Role="BillDetail">
+              <PropertyRef Name="Food_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -353,32 +334,25 @@ warning 6002: The table/view 'SEP23Team9.dbo.BillDetail' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_BillDetail_Food1">
-          <End Role="Food1" Type="Self.Food1" Multiplicity="1" />
-          <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Food1">
-              <PropertyRef Name="Food_ID" />
-            </Principal>
-            <Dependent Role="BillDetail">
-              <PropertyRef Name="Food_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="SEP23Team9Entities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdminWebs" EntityType="Self.AdminWeb" />
           <EntitySet Name="Bills" EntityType="Self.Bill" />
+          <EntitySet Name="BillDetails" EntityType="Self.BillDetail" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
           <EntitySet Name="Food1" EntityType="Self.Food1" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Users" EntityType="Self.User" />
-          <EntitySet Name="BillDetails" EntityType="Self.BillDetail" />
-          <AssociationSet Name="FK_Bill_User1" Association="Self.FK_Bill_User1">
+          <AssociationSet Name="FK_Bill_User" Association="Self.FK_Bill_User">
             <End Role="User" EntitySet="Users" />
             <End Role="Bill" EntitySet="Bills" />
           </AssociationSet>
           <AssociationSet Name="FK_BillDetail_Bill" Association="Self.FK_BillDetail_Bill">
             <End Role="Bill" EntitySet="Bills" />
+            <End Role="BillDetail" EntitySet="BillDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BillDetail_Food1" Association="Self.FK_BillDetail_Food1">
+            <End Role="Food1" EntitySet="Food1" />
             <End Role="BillDetail" EntitySet="BillDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_Food1_Category1" Association="Self.FK_Food1_Category1">
@@ -389,68 +363,23 @@ warning 6002: The table/view 'SEP23Team9.dbo.BillDetail' does not have a primary
             <End Role="User" EntitySet="Users" />
             <End Role="Feedback" EntitySet="Feedbacks" />
           </AssociationSet>
-          <AssociationSet Name="FK_BillDetail_Food1" Association="Self.FK_BillDetail_Food1">
-            <End Role="Food1" EntitySet="Food1" />
-            <End Role="BillDetail" EntitySet="BillDetails" />
-          </AssociationSet>
-          <FunctionImport Name="sp_alterdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_creatediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_dropdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(SEP23Team9Model.sp_helpdiagramdefinition_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(SEP23Team9Model.sp_helpdiagrams_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_renamediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="new_diagramname" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_upgraddiagrams" />
-          <EntitySet Name="AdminWebs" EntityType="SEP23Team9Model.AdminWeb" />
         </EntityContainer>
-        <ComplexType Name="sp_helpdiagramdefinition_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
-        <EntityType Name="AdminWeb">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SEP23Team9ModelStoreContainer" CdmEntityContainer="SEP23Team9Entities1">
+          <EntitySetMapping Name="AdminWebs">
+            <EntityTypeMapping TypeName="SEP23Team9Model.AdminWeb">
+              <MappingFragment StoreEntitySet="AdminWeb">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Bills">
             <EntityTypeMapping TypeName="SEP23Team9Model.Bill">
               <MappingFragment StoreEntitySet="Bill">
@@ -461,6 +390,16 @@ warning 6002: The table/view 'SEP23Team9.dbo.BillDetail' does not have a primary
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BillDetails">
+            <EntityTypeMapping TypeName="SEP23Team9Model.BillDetail">
+              <MappingFragment StoreEntitySet="BillDetail">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Bill_ID" ColumnName="Bill_ID" />
+                <ScalarProperty Name="Food_ID" ColumnName="Food_ID" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -518,49 +457,6 @@ warning 6002: The table/view 'SEP23Team9.dbo.BillDetail' does not have a primary
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Role" ColumnName="Role" />
                 <ScalarProperty Name="LastAccess" ColumnName="LastAccess" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BillDetails">
-            <EntityTypeMapping TypeName="SEP23Team9Model.BillDetail">
-              <MappingFragment StoreEntitySet="BillDetail">
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="Bill_ID" ColumnName="Bill_ID" />
-                <ScalarProperty Name="Food_ID" ColumnName="Food_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="SEP23Team9Model.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="SEP23Team9Model.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="SEP23Team9Model.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="SEP23Team9Model.Store.sp_helpdiagramdefinition">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SEP23Team9Model.sp_helpdiagramdefinition_Result">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="SEP23Team9Model.Store.sp_helpdiagrams">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SEP23Team9Model.sp_helpdiagrams_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="SEP23Team9Model.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="SEP23Team9Model.Store.sp_upgraddiagrams" />
-          <EntitySetMapping Name="AdminWebs">
-            <EntityTypeMapping TypeName="SEP23Team9Model.AdminWeb">
-              <MappingFragment StoreEntitySet="AdminWeb">
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
