@@ -131,8 +131,8 @@
                 @Html.DisplayFor(modelItem => item.Category.Category_Name)
             </td>
             <td>
-                <button class="btn btn-default">@Html.ActionLink("Chi tiết", "Details", new { id = item.Food_ID })</button> |
-                <button class="btn btn-default">@Html.ActionLink("Sửa", "Edit", new { id = item.Food_ID })</button> |
+                <button class="btn btn-default">@Html.ActionLink("Chi tiết", "Details", new { id = item.Food_ID })</button> 
+                <button class="btn btn-default">@Html.ActionLink("Sửa", "Edit", new { id = item.Food_ID })</button> 
                 <button class="btn btn-danger" style="color: springgreen">@Html.ActionLink("Xóa", "Delete", new { id = item.Food_ID })</button>
             </td>
         </tr>

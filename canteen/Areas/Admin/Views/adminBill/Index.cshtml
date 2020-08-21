@@ -2,23 +2,86 @@
 
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Quản lý đơn hàng";
+    Layout = "/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Mobile Metas -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Site Metas -->
+<title>Canteen Văn Lang</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Site Icons -->
+<link rel="shortcut icon" href="~/Areas/Admin/Content/images/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="~/Areas/Admin/Content/images/apple-touch-icon.png">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="~/Areas/Admin/Content/css/bootstrap.min.css">
+<!-- Site CSS -->
+<link rel="stylesheet" href="~/Areas/Admin/Content/css/style.css">
+<!-- Responsive CSS -->
+<link rel="stylesheet" href="~/Areas/Admin/Content/css/responsive.css">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="~/Areas/Admin/Content/css/custom.css">
+<script src="https://kit.fontawesome.com/ab8492bfc3.js" crossorigin="anonymous"></script>
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+        }
 
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+        .pagination .active {
+            background: #d65106;
+            color: white;
+        }
+
+        .pagination a:hover:not(.active) {
+            background-color: #ddd;
+        }
+</style>
+
+
+<h2>Quản lý đơn hàng</h2>
+
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search ..." style="width: 100%;
+        font-size: 16px; margin-bottom: 12px; border: 1px solid #ddd; padding: 12px 20px 12px 40px;
+" />
+
+<table class="table" id="myTable">
     <tr>
+        <th>
+            Mã bill
+        </th>
         <th>
             Mã món ăn
         </th>
         <th>
-            Thời gian
+            Thời gian nhận món
         </th>
         <th>
             Ngày
@@ -39,6 +102,9 @@
     {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Bill_ID)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Food_ID)
             </td>
             <td>
@@ -48,7 +114,7 @@
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
+                @String.Format("{0:n0}", item.Price)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Amount)
@@ -57,11 +123,35 @@
                 @Html.DisplayFor(modelItem => item.User.Email)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Bill_ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Bill_ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Bill_ID })
+
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.Bill_ID })
+                <button class="btn btn-danger">@Html.ActionLink("Xóa", "Delete", new { id = item.Bill_ID })</button>
+
             </td>
         </tr>
     }
 
 </table>
+<script>
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
