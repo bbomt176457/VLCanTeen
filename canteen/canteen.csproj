@@ -180,9 +180,9 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\adminBillController.cs" />
     <Compile Include="Areas\Admin\Controllers\adminFoodController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginAdminController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MenuFoodController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SeachController.cs" />
@@ -505,6 +505,37 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\about-bg.jpg" />
+    <Content Include="Images\about-img.jpg" />
+    <Content Include="Images\all-bg.jpg" />
+    <Content Include="Images\avt-img.jpg" />
+    <Content Include="Images\BanhCanh.jpg" />
+    <Content Include="Images\blog-img-01.jpg" />
+    <Content Include="Images\blog-img-02.jpg" />
+    <Content Include="Images\blog-img-03.jpg" />
+    <Content Include="Images\blog-img-04.jpg" />
+    <Content Include="Images\blog-img-05.jpg" />
+    <Content Include="Images\blog-img-06.jpg" />
+    <Content Include="Images\BunThitNuong.jpg" />
+    <Content Include="Images\ComGa.jpg" />
+    <Content Include="Images\ComTam.jpg" />
+    <Content Include="Images\HuTieu.jpg" />
+    <Content Include="Images\img-01.jpg" />
+    <Content Include="Images\img-02.jpg" />
+    <Content Include="Images\img-03.jpg" />
+    <Content Include="Images\img-04.jpg" />
+    <Content Include="Images\img-05.jpg" />
+    <Content Include="Images\img-06.jpg" />
+    <Content Include="Images\img-07.jpg" />
+    <Content Include="Images\img-08.jpg" />
+    <Content Include="Images\img-09.jpg" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\logovlu.jpg" />
+    <Content Include="Images\Mi xao.jpg" />
+    <Content Include="Images\NuocCam.jpg" />
+    <Content Include="Images\NuocNgot.jpg" />
+    <Content Include="Images\NuocSuoi.jpg" />
+    <Content Include="Images\VL.jpg" />
     <Content Include="Models\VLcanteenModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>VLcanteenModel.edmx</DependentUpon>
@@ -737,6 +768,7 @@
     <Content Include="Models\VLcanteenModel.edmx.diagram">
       <DependentUpon>VLcanteenModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\LoginAdmin\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -775,7 +807,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

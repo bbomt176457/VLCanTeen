@@ -17,7 +17,7 @@
     <Property Name="Food_ID" Type="int" Nullable="false" />
     <Property Name="User_ID" Type="int" Nullable="false" />
     <Property Name="Time" Type="nvarchar" MaxLength="50" />
-    <Property Name="Date" Type="date" />
+    <Property Name="Date" Type="datetime" />
     <Property Name="Price" Type="int" />
     <Property Name="Amount" Type="int" />
   </EntityType>

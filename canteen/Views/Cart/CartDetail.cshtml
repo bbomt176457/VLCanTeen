@@ -4,8 +4,21 @@
     Layout = "~/Views/Shared/LayoutUser.cshtml";
 }
 
+<title>&mdash; Colorlib e-Commerce Template</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
 
 
+<link href="~/Content/detail/fonts/icomoon/style.css" rel="stylesheet" />
+
+<link href="~/Content/detail/css/style.css" rel="stylesheet" />
+<link href="~/Content/detail/css/owl.theme.default.min.css" rel="stylesheet" />
+<link href="~/Content/detail/css/owl.carousel.min.css" rel="stylesheet" />
+<link href="~/Content/detail/css/magnific-popup.css" rel="stylesheet" />
+<link href="~/Content/detail/css/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/detail/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/detail/css/aos.css" rel="stylesheet" />
 
 
 
@@ -76,7 +89,7 @@
                     </table>
                 </div>
             </div>
-        </div>        
+        </div>
     </div>
 </div>
 <div class="row">
@@ -87,22 +100,36 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="heading-title text-center">
+            <div class="col-md-12">
+                @using (Html.BeginForm("CartDetail", "Cart", FormMethod.Post))
+                {
+                    <div class="form-group">
+                        <input class="form-control" name="time" placeholder="Thời Gian nhận món :" required data-errormessage-value-missing="Hãy nhập thời gian bạn muốn nhận">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary btn-sm" style="background-color:#d65106;color:white;">Đặt Hàng</button>
+                }
 
-@using (Html.BeginForm("CartDetail", "Cart", FormMethod.Post))
-{
-    <div class="form-group">
-        <label>Giờ nhận món :</label>
-        <input name="time" class="form-control" />
 
+
+
+            </div>
+        </div>
     </div>
-    <div class="table-responsive" style=" text-align:left;padding:10px">
-        <button type="submit" class="btn">Đặt hàng</button>
-
-    </div>
-
-
-
-}
+</div>
+<link href="~/Content/detail/fonts/icomoon/style.css" rel="stylesheet" />
+<script src="~/Content/detail/js/slick.min.js"></script>
+<script src="~/Content/detail/js/popper.min.js"></script>
+<script src="~/Content/detail/js/owl.carousel.min.js"></script>
+<script src="~/Content/detail/js/main.js"></script>
+<script src="~/Content/detail/js/jquery.magnific-popup.min.js"></script>
+<script src="~/Content/detail/js/jquery-ui.js"></script>
+<script src="~/Content/detail/js/jquery-3.3.1.min.js"></script>
+<script src="~/Content/detail/js/bootstrap.min.js"></script>
+<script src="~/Content/detail/js/aos.js"></script>
 
 
 

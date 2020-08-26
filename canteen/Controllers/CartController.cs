@@ -127,7 +127,8 @@ namespace canteen.Controllers
                 orderDetail.Quantity = item.Amount;
                 new BillDetailTai().Insert(orderDetail);
             }
-            return Redirect("/hoan-thanh");
+            
+            return RedirectToAction("Success", "Cart");
         }
         public ActionResult Success()
         {

@@ -27,7 +27,8 @@
                     {
                         if (groupItem.Key != null)
                         {
-                            <a class="nav-link active" href="@Url.Action("TrangSanPham", "MenuFood", new { @IdLoaiSanPham = groupItem.Key.Category_ID })">@groupItem.Key.Category_Name</a>
+                            <a class="nav-link" href="/MenuFood/TrangSanPham?IdLoaiSanPham=1">Món ăn </a>
+                            <a class="nav-link" href="/MenuFood/TrangSanPham?IdLoaiSanPham=2">Đồ uống </a>
 
                         }
                     }
@@ -58,6 +59,9 @@
             else
             {
                 <h3 class="alert">Không có món bạn cần tìm</h3>
+                <div class="col-md-6">
+                    <a href="/" class="btn btn-outline-primary btn-sm btn-block" style="background-color:#d65106;color:white">Tiếp tục mua sắm</a>
+                </div>
             }
         </div>
     </div>

@@ -77,19 +77,15 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="row inner-menu-box">
             <div class="col-3">
                 <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
                     <a class="nav-link active" href="" role="tab">Tất cả</a>
-                    @foreach (var groupItem in Model.GroupBy(n => n.Category))
-                    {
-                        if (groupItem.Key != null)
-                        {
-                            <a class="nav-link" href="@Url.Action("TrangSanPham", "MenuFood", new { @IdLoaiSanPham = groupItem.Key.Category_ID })">@groupItem.Key.Category_Name</a>
-
-                        }
-                    }
+                   
+                            <a class="nav-link" href="/MenuFood/TrangSanPham?IdLoaiSanPham=1">Món ăn </a>
+                            <a class="nav-link" href="/MenuFood/TrangSanPham?IdLoaiSanPham=2">Đồ uống </a> 
+                     
                 </div>
             </div>
 
@@ -119,7 +115,12 @@
 
 @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
 
-
+<div class="row">
+    <div class="col-lg-12">
+        <div class="heading-title text-center">            
+        </div>
+    </div>
+</div>
 
 
 @*@section scripts{

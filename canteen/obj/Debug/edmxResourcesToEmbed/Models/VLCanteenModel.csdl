@@ -17,7 +17,7 @@
     <Property Name="Food_ID" Type="Int32" Nullable="false" />
     <Property Name="User_ID" Type="Int32" Nullable="false" />
     <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
     <Property Name="Price" Type="Int32" />
     <Property Name="Amount" Type="Int32" />
     <NavigationProperty Name="User" Relationship="Self.FK_Bill_User" FromRole="Bill" ToRole="User" />

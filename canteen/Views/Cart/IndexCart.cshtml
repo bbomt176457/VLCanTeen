@@ -1,102 +1,273 @@
 ﻿@model List<canteen.Models.CartItem>
 @{
     ViewBag.Title = "CartDetail";
-    Layout = "~/Views/Shared/LayoutUser.cshtml";
+    Layout = null;
 }
 @section jsFooter{
-<script src="/Content/js/cart/cartController.js"></script>
+    <script src="/Content/js/cart/cartController.js"></script>
 }
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>&mdash; Colorlib e-Commerce Template</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
+
+<!-- Basic -->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Mobile Metas -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Site Metas -->
+<title>Canteen Văn Lang</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Site Icons -->
+<link rel="shortcut icon" href="~/Content/images/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="~/Content/images/apple-touch-icon.png">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+<!-- Site CSS -->
+<link rel="stylesheet" href="~/Content/css/style.css">
+<!-- Responsive CSS -->
+<link rel="stylesheet" href="~/Content/css/responsive.css">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="~/Content/css/custom.css">
+<script src="https://kit.fontawesome.com/ab8492bfc3.js" crossorigin="anonymous"></script>
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<!-- Start header -->
+<title>&mdash; Colorlib e-Commerce Template</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
 
 
-    <link href="~/Content/detail/fonts/icomoon/style.css" rel="stylesheet" />
+<link href="~/Content/detail/fonts/icomoon/style.css" rel="stylesheet" />
 
-    <link href="~/Content/detail/css/style.css" rel="stylesheet" />
-    <link href="~/Content/detail/css/owl.theme.default.min.css" rel="stylesheet" />
-    <link href="~/Content/detail/css/owl.carousel.min.css" rel="stylesheet" />
-    <link href="~/Content/detail/css/magnific-popup.css" rel="stylesheet" />
-    <link href="~/Content/detail/css/jquery-ui.css" rel="stylesheet" />
-    <link href="~/Content/detail/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/detail/css/aos.css" rel="stylesheet" />
+<link href="~/Content/detail/css/style.css" rel="stylesheet" />
+<link href="~/Content/detail/css/owl.theme.default.min.css" rel="stylesheet" />
+<link href="~/Content/detail/css/owl.carousel.min.css" rel="stylesheet" />
+<link href="~/Content/detail/css/magnific-popup.css" rel="stylesheet" />
+<link href="~/Content/detail/css/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/detail/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/detail/css/aos.css" rel="stylesheet" />
 
+<header class="top-navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height:44px">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="/Content/images/logovlu.jpg" style="height:64px ;width:64px" alt="" />
+            </a>
 
-
-    @if (Model.Count > 0)
-    {
-        <div class="site-section">
-            <div class="container">
-                <div class="bg-light py-3">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12 mb-0"><a href="/Home/Index" style="color:orangered">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Cart</strong></div>
-                        </div>
+            <div class="collapse navbar-collapse" id="navbars-rs-food">
+                <div class="navbar-nav ml-auto" style="display:flex;justify-content: space-between;width:100%;">
+                    <div>
+                        <li class="nav-item active"><a class="nav-link " href="/">Trang chủ</a></li>
                     </div>
-                </div>
-                <div class="row mb-5">
-
-                    <div class="col-md-12" method="post">
-                        <div class="site-blocks-table">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th class="product-thumbnail"></th>
-                                        <th class="product-name">Tên Món</th>
-                                        <th class="product-price">Giá</th>
-                                        <th class="product-quantity">Số Lượng</th>
-                                        <th class="product-total">Tổng Tiền</th>
-                                        <th class="product-remove">Xóa</th>
-                                    </tr>
-                                </thead>
-                                @foreach (var item in Model)
-                                {
+                    <div class="single-sidebar">
 
 
-                                    <tbody>
-                                        <tr>
-                                            <td class="product-thumbnail">
-                                                <img height="200" width="150" src="@Url.Content(item.Food.Image)" alt="Image" class="img-fluid">
-                                            </td>
-                                            <td class="product-name">
-                                                <h2 class="h5 text-black">@item.Food.Name</h2>
-                                            </td>
-                                            <td>@item.Food.Price.GetValueOrDefault(0).ToString("N0")</td>
-                                            <td>
-                                                <div class="mb-5">
-                                                    <div class="mb-3">
-                                                        <form action="@Url.Action("SuaSoLuong")" method="get">
-                                                            <input type="hidden" name="id" value="@item.Food.Food_ID" />
-                                                            <input type="number" min="1" step="1" name="soluongmoi" value="@item.Amount" />
-                                                            <button type="submit" class="btn btn-primary btn-sm" style="background-color:#d65106;color:white"> Cập nhật </button>
-                                                        </form>
-                                                    </div>
+                        @using (Html.BeginForm("LayTuKhoaTimKiem", "TimKiem"))
+                        {
+                            <form>
+                                <input type="text" name="sTuKhoa" placeholder="Seach" style="width:500px;height:48px">
+                                <input type="submit" value="Search" style="height:48px">
+                            </form>
+
+                        }
+                    </div>
+
+                    <div class="chile-home" style="display:flex;flex-direction:row;">
+                        <li class="nav-link nav-item  ">
+
+                            <a href=""> @Html.ActionLink(" ", "IndexCart", "Cart", null, new { @class = "nav-link nav-item fas fa-cart-plus" }) </a>
+
+
+                        </li>
+
+                        @if (!Request.IsAuthenticated)
+                        {
+                            <li class="nav-item active">
+                                <a class="nav-link" href="@Url.Action("SignIn", "Home")" class="nav-item active"> Đăng Nhập </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li id="header_notification_bar" class="dropdown nav-link nav-item fas">
+                                <a data-toggle="dropdown" class="" href="#">
+
+                                    <i class="fa fa-bell-o" style="color:orangered;height:initial"></i>
+                                    <span class="badge bg-warning">3</span>
+                                </a>
+                                <ul class="dropdown-menu extended notification">
+                                    <li>
+                                        <p>Notifications</p>
+                                    </li>
+                                    <li>
+                                        <div class="alert alert-info clearfix">
+                                            <span class="alert-icon"><i class="fa fa-bolt"></i></span>
+                                            <div class="noti-info">
+                                                <a href="#"> Server #1 overloaded.</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="alert alert-danger clearfix">
+                                            <span class="alert-icon"><i class="fa fa-bolt"></i></span>
+                                            <div class="noti-info">
+                                                <a href="#"> Server #2 overloaded.</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="alert alert-success clearfix">
+                                            <span class="alert-icon"><i class="fa fa-bolt"></i></span>
+                                            <div class="noti-info">
+                                                <a href="#"> Server #3 overloaded.</a>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="nav-item active fa fa-user nav-link nav-item" aria-hidden="true">
+                                <i id="header_notification_bar" class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                    </a>
+                                    <ul class="dropdown-menu extended notification">
+                                        <P>
+                                        <li class=""><br />Hello @System.Security.Claims.ClaimsPrincipal.Current.FindFirst("name").Value</li>
+                                        </P>
+
+                                        <li>
+                                            <div class="alert alert-info clearfix">
+
+                                                <div class="noti-info">
+                                                    <a href="#"> Lịch sử đơn hàng</a>
                                                 </div>
-                                            </td>
-                                            <td>@((item.Food.Price.GetValueOrDefault(0) * item.Amount).ToString("N0"))</td>
-                                            <td> <a href="@Url.Action("XoaKhoiGio",new {id = item.Food.Food_ID})" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?');" class="btn btn-danger btn-sm" style="background-color:#d65106;color:white">Xóa</a> </td>
-                                        </tr>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="alert alert-info clearfix">
 
-                                    </tbody>
-                                }
-                                <tfoot>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td class="text-right">Tổng số lượng: @Model.Sum(m => m.Amount) </td>
-                                        <td class="text-right">Tổng thành tiền:@Model.Sum(m => m.Total).ToString("#,##0").Replace(',', '.') VNĐ </td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
+                                                <div class="noti-info">
+                                                    <a href="@Url.Action("SignOut", "Home")"> Đăng Xuất</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </i>
+
+                            </li>
+
+
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+
+
+
+@if (Model.Count > 0)
+{
+    <div class="site-section">
+        <div class="container">
+            <div class="bg-light py-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 mb-0"><a href="/Home/Index" style="color:orangered">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Cart</strong></div>
                     </div>
                 </div>
+            </div>
+            <div class="row mb-5">
+
+                <div class="col-md-12" method="post">
+                    <div class="site-blocks-table">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="product-thumbnail"></th>
+                                    <th class="product-name">Tên Món</th>
+                                    <th class="product-price">Giá</th>
+                                    <th class="product-quantity">Số Lượng</th>
+                                    <th class="product-total">Tổng Tiền</th>
+                                    <th class="product-remove">Xóa</th>
+                                </tr>
+                            </thead>
+                            @foreach (var item in Model)
+                            {
+
+
+                                <tbody>
+                                    <tr>
+                                        <td class="product-thumbnail">
+                                            <img height="200" width="150" src="@Url.Content(item.Food.Image)" alt="Image" class="img-fluid">
+                                        </td>
+                                        <td class="product-name">
+                                            <h2 class="h5 text-black">@item.Food.Name</h2>
+                                        </td>
+                                        <td>@item.Food.Price.GetValueOrDefault(0).ToString("N0")</td>
+                                        <td>
+                                            <div class="mb-5">
+                                                <div class="mb-3">
+                                                    <form action="@Url.Action("SuaSoLuong")" method="get">
+                                                        <input type="hidden" name="id" value="@item.Food.Food_ID" />
+                                                        <input type="number" min="1" step="1" name="soluongmoi" value="@item.Amount" />
+                                                        <button type="submit" class="btn btn-primary btn-sm" style="background-color:#d65106;color:white"> Cập nhật </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>@((item.Food.Price.GetValueOrDefault(0) * item.Amount).ToString("N0"))</td>
+                                        <td> <a href="@Url.Action("XoaKhoiGio",new {id = item.Food.Food_ID})" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?');" class="btn btn-danger btn-sm" style="background-color:#d65106;color:white">Xóa</a> </td>
+                                    </tr>
+
+                                </tbody>
+                            }
+                            <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="text-right">Tổng số lượng: @Model.Sum(m => m.Amount) </td>
+                                    <td class="text-right">Tổng thành tiền:@Model.Sum(m => m.Total).ToString("#,##0").Replace(',', '.') VNĐ </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            @if (!Request.IsAuthenticated)
+            {
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row mb-5">
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <a href="" onclick="return confirm('Bạn chưa đăng nhập , hãy đăng nhập để tiếp tục thanh toán');" class="btn btn-outline-primary btn-sm btn-block" style="background-color:#d65106;color:white">Thanh toán</a>
+
+                            </div>
+                            <div class="col-md-6">
+                                <a href="/" class="btn btn-outline-primary btn-sm btn-block" style="background-color:#d65106;color:white">Tiếp tục mua sắm</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+            else
+            {
                 <div class="row">
                     <div class="col-md-6">
                         <div class="row mb-5">
@@ -112,43 +283,131 @@
                     </div>
 
                 </div>
-            </div>
+            }
         </div>
-    }
-    else
-    {
-        <div class="site-section">
-            <div class="container">
-                <div class="bg-light py-3">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12 mb-0"><a href="/Home/Index" style="color:orangered">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Cart</strong></div>
-
-                        </div>
-
-                    </div>
+    </div>
+}
+else
+{
+    <div class="site-section">
+        <div class="container">
+            <div class=" py-3">
+                <div class="row">
+                    <div class="col-md-12 mb-0"><a href="/Home/Index" style="color:orangered">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Cart</strong></div>
                 </div>
 
             </div>
-
         </div>
         <span class="alert alert-danger">Chưa có sản phẩm nào trong giỏ hàng .</span>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-2">
+            <a href="/" class="btn btn-outline-primary btn-sm btn-block" style="background-color:#d65106;color:white">Tiếp tục mua sắm</a>
+        </div>
+    </div>
 
-    }
+}
+
+<!-- End Customer Reviews -->
+<!-- Start Contact info -->
+<div class="contact-imfo-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 arrow-right">
+                <i class="fa fa-volume-control-phone"></i>
+                <div class="overflow-hidden">
+                    <h4>Phone</h4>
+                    <p class="lead">
+                        +01 123-456-4590
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 arrow-right">
+                <i class="fa fa-envelope"></i>
+                <div class="overflow-hidden">
+                    <h4>Email</h4>
+                    <p class="lead">
+                        VLUCanteen@vanlanguni.com
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <i class="fa fa-map-marker"></i>
+                <div class="overflow-hidden">
+                    <h4>Location</h4>
+                    <p class="lead">
+                        Lầu 4, Tòa nhà L-V, Trường Đại Học Văn Lang
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Contact info -->
+<!-- Start Footer -->
+<footer class="footer-area bg-f">
+    <div class="container">
+        <div class="row">
 
 
+            <div class="col-lg-3 col-md-6">
+                <h3>Thông Tin Liên Hệ</h3>
+                <p class="lead">Trường Đại Học Văn Lang</p>
+                <p class="lead"><a href="#">+01 2000 800 9999</a></p>
+                <p><a href="#"> VLUCanteen@vanlanguni.com</a></p>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h3>Giờ mở cửa</h3>
+                <p><span class="text-color"></span>7:Am - 9PM Từ thứ 2 đến thứ 7</p>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="company-name">
+                        All Rights Reserved. &copy; 2018 <a href="#">Canteen Văn lang</a> Design By :
+                        <a href="https://html.design/">VTQT</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
 
 
-    <link href="~/Content/detail/fonts/icomoon/style.css" rel="stylesheet" />
-    <script src="~/Content/detail/js/slick.min.js"></script>
-    <script src="~/Content/detail/js/popper.min.js"></script>
-    <script src="~/Content/detail/js/owl.carousel.min.js"></script>
-    <script src="~/Content/detail/js/main.js"></script>
-    <script src="~/Content/detail/js/jquery.magnific-popup.min.js"></script>
-    <script src="~/Content/detail/js/jquery-ui.js"></script>
-    <script src="~/Content/detail/js/jquery-3.3.1.min.js"></script>
-    <script src="~/Content/detail/js/bootstrap.min.js"></script>
-    <script src="~/Content/detail/js/aos.js"></script>
+<a href="#" id="back-to-top" title="Back to top" style="display: none;"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></a>
+
+<!-- ALL JS FILES -->
+<script src="~/Content/js/jquery-3.2.1.min.js"></script>
+<script src="~/Content/js/popper.min.js"></script>
+<script src="~/Content/js/bootstrap.min.js"></script>
+<!-- ALL PLUGINS -->
+<script src="~/Content/js/jquery.superslides.min.js"></script>
+<script src="~/Content/js/images-loded.min.js"></script>
+<script src="~/Content/js/isotope.min.js"></script>
+<script src="~/Content/js/baguetteBox.min.js"></script>
+<script src="~/Content/js/form-validator.min.js"></script>
+<script src="~/Content/js/contact-form-script.js"></script>
+<script src="~/Content/js/custom.js"></script>
+
+<link href="~/Content/detail/fonts/icomoon/style.css" rel="stylesheet" />
+<script src="~/Content/detail/js/slick.min.js"></script>
+<script src="~/Content/detail/js/popper.min.js"></script>
+<script src="~/Content/detail/js/owl.carousel.min.js"></script>
+<script src="~/Content/detail/js/main.js"></script>
+<script src="~/Content/detail/js/jquery.magnific-popup.min.js"></script>
+<script src="~/Content/detail/js/jquery-ui.js"></script>
+<script src="~/Content/detail/js/jquery-3.3.1.min.js"></script>
+<script src="~/Content/detail/js/bootstrap.min.js"></script>
+<script src="~/Content/detail/js/aos.js"></script>
+
+
 
 
 
